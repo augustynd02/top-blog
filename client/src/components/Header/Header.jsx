@@ -1,6 +1,8 @@
 import styles from './header.module.css';
 import logo from '../../assets/icons/logo.svg';
 
+import Link from '../Link/Link';
+
 function Header() {
     return (
         <header>
@@ -11,10 +13,10 @@ function Header() {
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/about-me">About me</a></li>
-                        <li><a href="/login">Log in</a></li>
-                        <li><a href="/register" className={styles.styledLink}>Sign up</a></li>
+                        <li><Link href="/" isStyled={false} >Homepage</Link></li>
+                        <li><Link href="/" isStyled={false} >About me</Link></li>
+                        <li><Link href="/" isStyled={false} >Login</Link></li>
+                        <li><Link href="/" isStyled={true} >Sign up</Link></li>
                     </ul>
                 </nav>
             </div>

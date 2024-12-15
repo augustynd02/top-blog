@@ -1,5 +1,6 @@
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
+import Link from "../../components/Link/Link";
 
 import styles from "./homepage.module.css";
 import heroImage from "../../assets/images/hero.jpg";
@@ -16,14 +17,17 @@ function HomePage() {
                             <p>Hi there! My name is Dominik Augustyn, and this is my blog: written by an aspiring web developer, for other aspiring developers. Feel free to read all about my insights, experiences, tips and reflections!</p>
                         </div>
                         <div className={styles.action}>
-                            <a href="/register" className={styles.styledLink}>Sign up</a>
-                            <a href="/about-me">Read about me</a>
+                            <Link href="/register" isStyled={true}>Sign up now!</Link>
+                            <Link href="/register" isStyled={false}>Read about me</Link>
                         </div>
                     </div>
                     <div className={styles.welcomeImage}>
                         <img src={heroImage} alt="Coding hero image" />
                     </div>
                 </div>
+                <section>
+                    <h2>Available <span>dev</span> blog articles:</h2>
+                </section>
             </main>
             <Footer />
         </>
