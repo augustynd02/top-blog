@@ -18,7 +18,7 @@ function HomePage() {
                         </div>
                         <div className={styles.action}>
                             <Link href="/register" isStyled={true}>Sign up now!</Link>
-                            <Link href="/register" isStyled={false}>Read about me</Link>
+                            <Link href="/about-me" isStyled={false}>Read about me</Link>
                         </div>
                     </div>
                     <div className={styles.welcomeImage}>
