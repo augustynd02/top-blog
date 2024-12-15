@@ -23,28 +23,16 @@ header {
     height: var(--size-icon-medium);
 }
 
-h1 {
+.logoContainer h1 {
     margin: 0;
 }
 
-ul {
+nav ul {
     display: flex;
     gap: 1rem;
 
     margin: 0;
     list-style-type: none;
-}
-
-a {
-    padding: 4px;
-    color: var(--color-secondary);
-    text-decoration: none;
-    font-size: 1.2rem;
-}
-
-a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
 }
 
 .styledLink {
@@ -57,6 +45,7 @@ a:hover {
     text-decoration: none;
     background-color: var(--color-primary-darker);
 }
+
 
 @media screen and (max-width: 1000px) {
     .headerContainer {

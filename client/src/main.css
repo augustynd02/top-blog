@@ -1,10 +1,15 @@
+@font-face {
+    font-family: 'Raleway';
+    src: url('./assets/fonts/Raleway-VariableFont_wght.ttf') format('truetype');
+  }
+
 * {
     box-sizing: border-box;
 }
 
 :root {
     --color-background: rgb(40, 36, 41);
-    --color-primary: #5d3972;
+    --color-primary: #9162ac;
     --color-primary-darker: #4b2d5c;
     /* #473253; */
     --color-secondary: #E5E7E6;
@@ -20,6 +25,8 @@ body {
     background-color: var(--color-background);
     color: var(--color-secondary);
     margin: 0;
+
+    font-family: Raleway;
 }
 
 #root {
@@ -30,4 +37,20 @@ body {
 
 main {
     flex: 1;
+}
+
+/*
+    GLOBAL, SITE-WIDE STYLES
+*/
+
+a {
+    padding: 4px;
+    color: var(--color-secondary);
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
 }
