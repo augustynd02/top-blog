@@ -1,0 +1,22 @@
+footer {
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+footer span {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.5rem;
+}
+
+.socialContainer {
+    display: flex;
+
+}
+
+.socialContainer img {
+    height: var(--size-icon-small);
+    color: white;
+}
