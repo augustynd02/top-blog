@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --color-background: rgb(40, 36, 41);
+    --color-primary: #5d3972;
+    --color-primary-darker: #4b2d5c;
+    /* #473253; */
+    --color-secondary: #E5E7E6;
+    --border-color: #4D5258;
+
+    --size-icon-tiny: 16px;
+    --size-icon-small: 32px;
+    --size-icon-medium: 48px;
+    --size-icon-large: 64px;
+}
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-secondary);
+    margin: 0;
+}
