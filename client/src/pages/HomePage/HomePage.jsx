@@ -1,6 +1,7 @@
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import Link from "../../components/Link/Link";
+import PostPreview from "../../components/PostPreview/PostPreview";
 
 import styles from "./homepage.module.css";
 import heroImage from "../../assets/images/hero.jpg";
@@ -14,6 +15,7 @@ function HomePage() {
         const fetchPosts = async () => {
             const response = await fetch('http://localhost:3000/api/posts');
             const result = await response.json();
+            console.log(result);
             setPosts(result);
         }
 
@@ -40,6 +42,9 @@ function HomePage() {
                 </div>
                 <section>
                     <h2>Available <span>dev</span> blog articles:</h2>
+                    {posts.map(post => (
+                        <PostPreview key={post.id} title={post.title} content={post.content} created_at={post.created_at} />
+                    ))}
                 </section>
             </main>
             <Footer />
