@@ -3,7 +3,7 @@ const prisma = new PrismaClient()
 
 const postsController = {
     getAllPosts: async (req, res) => {
-        const posts = prisma.post.findMany();
+        const posts = await prisma.post.findMany();
         res.json(posts);
     },
     getPostById: async (req, res) => {
