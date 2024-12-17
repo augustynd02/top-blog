@@ -5,7 +5,20 @@ import Link from "../../components/Link/Link";
 import styles from "./homepage.module.css";
 import heroImage from "../../assets/images/hero.jpg";
 
+import { useState, useEffect } from "react";
+
 function HomePage() {
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            const response = await fetch('http://localhost:3000/api/posts');
+            const result = await response.json();
+            setPosts(result);
+        }
+
+        fetchPosts();
+    }, [])
     return (
         <>
             <Header />
