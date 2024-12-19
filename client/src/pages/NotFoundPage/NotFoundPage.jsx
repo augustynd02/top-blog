@@ -1,4 +1,7 @@
+import useDocumentTitle from "../../hooks/useDocumentTitle";
+
 function NotFoundPage() {
+    useDocumentTitle('error')
     return (
         <div className="page-container">
             <div className="error-container">

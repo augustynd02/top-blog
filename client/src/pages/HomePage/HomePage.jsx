@@ -3,11 +3,15 @@ import Header from "../../components/Header/Header";
 import Link from "../../components/Link/Link";
 import PostPreview from "../../components/PostPreview/PostPreview";
 
+import useDocumentTitle from "../../hooks/useDocumentTitle";
+
 import styles from "./homepage.module.css";
 import heroImage from "../../assets/images/hero.jpg";
 
 
 function HomePage() {
+    useDocumentTitle('home');
+
     return (
         <>
             <Header />
