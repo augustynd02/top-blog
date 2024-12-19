@@ -14,9 +14,9 @@ function Header() {
                 <nav>
                     <ul>
                         <li><Link href="/" isStyled={false} >Homepage</Link></li>
-                        <li><Link href="/" isStyled={false} >About me</Link></li>
-                        <li><Link href="/" isStyled={false} >Login</Link></li>
-                        <li><Link href="/" isStyled={true} >Sign up</Link></li>
+                        <li><Link href="/about-me" isStyled={false} >About me</Link></li>
+                        <li><Link href="/login" isStyled={false} >Login</Link></li>
+                        <li><Link href="/register" isStyled={true} >Sign up</Link></li>
                     </ul>
                 </nav>
             </div>
