@@ -6,21 +6,8 @@ import PostPreview from "../../components/PostPreview/PostPreview";
 import styles from "./homepage.module.css";
 import heroImage from "../../assets/images/hero.jpg";
 
-import { useState, useEffect } from "react";
 
 function HomePage() {
-    const [posts, setPosts] = useState([]);
-
-    useEffect(() => {
-        const fetchPosts = async () => {
-            const response = await fetch('http://localhost:3000/api/posts');
-            const result = await response.json();
-            console.log(result);
-            setPosts(result);
-        }
-
-        fetchPosts();
-    }, [])
     return (
         <>
             <Header />
@@ -42,9 +29,7 @@ function HomePage() {
                 </div>
                 <section>
                     <h2>Available <span>dev</span> blog articles:</h2>
-                    {posts.map(post => (
-                        <PostPreview key={post.id} title={post.title} content={post.content} created_at={post.created_at} />
-                    ))}
+                    <PostPreview />
                 </section>
             </main>
             <Footer />

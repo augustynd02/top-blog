@@ -1,20 +1,45 @@
 import styles from './postpreview.module.css';
 
-function PostPreview({ title, content, created_at }) {
+import { useState, useEffect } from 'react';
+import dummyImage from '../../assets/images/hero.jpg'
+
+function PostPreview() {
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            const response = await fetch('http://localhost:3000/api/posts');
+            const result = await response.json();
+            console.log(result);
+            setPosts(result);
+        }
+
+        fetchPosts();
+    }, [])
+    return (
+        <div className={styles.postsPreviewContainer}>
+            {posts.map(post => (
+                <Card key={post.id} title={post.title} content={post.content} created_at={post.created_at} />
+            ))}
+        </div>
+    )
+}
+
+function Card({ title, content, created_at }) {
     const postPath = `/posts/${title.replace(' ', '-')}`
     return (
-        <article className={styles.postPreview}>
-            <a href={postPath}>
-                <div className={styles.cover}>
-
-                </div>
-                <div className={styles.content}>
-                    <h3>{title}</h3>
-                    <span>{created_at}</span>
-                    <p>{content}</p>
-                </div>
-            </a>
-        </article>
+        <a href={postPath} className={styles.previewWrapper}>
+            <article className={styles.preview}>
+                    <div className={styles.cover}>
+                        <img src={dummyImage} />
+                    </div>
+                    <div className={styles.content}>
+                        <h3>{title}</h3>
+                        <span>{created_at}</span>
+                        <p>{content}</p>
+                    </div>
+            </article>
+        </a>
     )
 }
 
