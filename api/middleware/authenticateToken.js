@@ -8,11 +8,11 @@ function authenticateToken(req, res, next) {
         return res.status(401).json({ message: 'Authorization failed: no token provided' })
     }
 
-    jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
+    jwt.verify(token, process.env.TOKEN_SECRET, (err, data) => {
         if (err) {
             return res.status(403).json({ message: 'Invalid token'})
         }
-        req.user = user;
+        req.user = { id: data.id };
         next()
     })
 }
