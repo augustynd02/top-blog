@@ -3,5 +3,6 @@ const { Router } = require('express');
 const usersRouter = Router()
 
 usersRouter.post('/', usersController.createUser);
+usersRouter.post('/login', usersController.loginUser);
 
 module.exports = usersRouter;
