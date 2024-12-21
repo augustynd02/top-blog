@@ -35,7 +35,7 @@ const authController = {
     },
     checkLogin: async (req, res) => {
         if (req.user) {
-            return res.status(200).json({ message: 'Login authentication successful.', user: { username: req.user.username, role_id: req.user.role_id } });
+            return res.status(200).json({ message: 'Login authentication successful.', user: req.user });
         }
         res.status(401).json({ message: 'Login authentication failed.'})
     }
