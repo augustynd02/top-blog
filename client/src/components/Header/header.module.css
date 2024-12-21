@@ -35,6 +35,16 @@ nav ul {
     list-style-type: none;
 }
 
+li {
+    padding: 4px;
+    font-size: 1.2rem;
+}
+
+li.headerWelcome {
+    border-left: 1px solid var(--color-border);
+    padding-left: 1rem;
+}
+
 .styledLink {
     background-color: var(--color-primary);
     padding: 0.75rem 1rem;
