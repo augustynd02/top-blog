@@ -33,6 +33,10 @@ const authController = {
             res.status(500).json({ message: 'Internal server error' });
         }
     },
+    logoutUser: async (req, res) => {
+        res.clearCookie('token');
+        res.status(205).json({ message: 'Logout successful.' })
+    },
     checkLogin: async (req, res) => {
         if (req.user) {
             return res.status(200).json({ message: 'Login authentication successful.', user: req.user });

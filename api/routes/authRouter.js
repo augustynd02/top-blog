@@ -5,5 +5,6 @@ const authenticateToken = require('../middleware/authenticateToken');
 
 authRouter.post('/login', authController.loginUser);
 authRouter.get('/check-login', authenticateToken, authController.checkLogin);
+authRouter.post('/logout', authenticateToken, authController.logoutUser);
 
 module.exports = authRouter;
