@@ -6,6 +6,7 @@ import AdminPage from "./pages/AdminPage/AdminPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import LogoutPage from "./pages/LogoutPage/LogoutPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 
 import './main.css';
@@ -17,6 +18,8 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/about-me" element={<AboutPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/logout" element={<LogoutPage />} />
+
             <Route path="/register" element={<RegisterPage />} />
 
             <Route path="/posts/:title" element={<PostPage />} />
