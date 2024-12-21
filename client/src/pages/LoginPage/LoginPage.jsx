@@ -3,18 +3,19 @@ import useDocumentTitle from '../../hooks/useDocumentTitle';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext'
 
 import styles from './loginpage.module.css';
 
 function LoginPage() {
     useDocumentTitle('login');
     const navigate = useNavigate();
+    const { setUser } = useContext(AuthContext);
 
     const [formData, setFormData] = useState({ username: '', password: '' });
     const [error, setError] = useState(null);
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value })
@@ -34,6 +35,7 @@ function LoginPage() {
             const data = await response.json();
 
             if (response.ok) {
+                setUser(data.user)
                 navigate('/')
             } else {
                 setError(data.message || 'Unknown error.');

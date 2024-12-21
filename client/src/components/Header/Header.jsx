@@ -6,7 +6,8 @@ import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext'
 
 function Header() {
-    const user = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
+
     return (
         <header>
             <div className={styles.headerContainer}>
@@ -21,7 +22,7 @@ function Header() {
                             {user ? (
                                 <>
                                 <li className={styles.headerWelcome}>Welcome, {user.username}!</li>
-                                <li><Link href="/logout" isStyled={true} >Logout</Link></li>
+                                <li><Link href='/logout' isStyled={true}>Logout</Link></li>
                                 </>
                             ) : (
                                 <>
