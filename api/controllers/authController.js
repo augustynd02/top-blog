@@ -3,6 +3,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const generateAccessToken = require('../utils/generateAccessToken');
 
+
 const authController = {
     loginUser: async (req, res) => {
         const { username, password } = req.body;
@@ -20,16 +21,23 @@ const authController = {
                 return res.status(401).json({ message: 'Invalid password' });
             }
 
-            const token = generateAccessToken(user.id)
+            const token = generateAccessToken({ username: user.username, role_id: user.role_id})
             res.cookie('token', token, {
                 httpOnly: true,
                 maxAge: 604800000,
+                sameSite: 'Lax',
             });
             res.status(200).json({ message: 'Login successful' })
         } catch(err) {
             console.error(err);
             res.status(500).json({ message: 'Internal server error' });
         }
+    },
+    checkLogin: async (req, res) => {
+        if (req.user) {
+            return res.status(200).json({ message: 'Login authentication successful.', user: { username: req.user.username, role_id: req.user.role_id } });
+        }
+        res.status(401).json({ message: 'Login authentication failed.'})
     }
 }
 
