@@ -23,9 +23,9 @@ function useAuth() {
             }
         }
         checkLoginStatus();
-    }, [])
+    }, [user])
 
-    return user;
+    return { user, setUser};
 }
 
 export default useAuth;
