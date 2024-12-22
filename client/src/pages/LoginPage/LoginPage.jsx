@@ -29,7 +29,7 @@ function LoginPage() {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:3000/api/auth/login', {
+            const response = await fetch('http://localhost:3000/api/auth', {
                 method: 'POST',
                 headers: { 'Content-type': 'application/json' },
                 credentials: 'include',

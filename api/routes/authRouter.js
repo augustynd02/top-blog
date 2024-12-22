@@ -3,8 +3,8 @@ const { Router } = require('express');
 const authRouter = Router()
 const authenticateToken = require('../middleware/authenticateToken');
 
-authRouter.post('/login', authController.loginUser);
-authRouter.get('/check-login', authenticateToken, authController.checkLogin);
-authRouter.post('/logout', authenticateToken, authController.logoutUser);
+authRouter.post('/', authController.loginUser);
+authRouter.get('/session', authenticateToken, authController.checkLogin);
+authRouter.delete('/session', authenticateToken, authController.logoutUser);
 
 module.exports = authRouter;

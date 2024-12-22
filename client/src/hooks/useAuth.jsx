@@ -6,7 +6,7 @@ function useAuth() {
     useEffect(() => {
         async function checkLoginStatus() {
             try {
-                const response = await fetch('http://localhost:3000/api/auth/check-login', {
+                const response = await fetch('http://localhost:3000/api/auth/session', {
                     method: 'GET',
                     credentials: 'include',
                 })

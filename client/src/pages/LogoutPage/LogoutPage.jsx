@@ -5,8 +5,8 @@ function LogoutPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const response = fetch('http://localhost:3000/api/auth/logout', {
-            method: 'POST',
+        const response = fetch('http://localhost:3000/api/auth/session', {
+            method: 'DELETE',
             credentials: 'include'
         })
         navigate(-1);

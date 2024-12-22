@@ -10,7 +10,6 @@ function PostPreview() {
         const fetchPosts = async () => {
             const response = await fetch('http://localhost:3000/api/posts');
             const result = await response.json();
-            console.log(result);
             result.forEach(post => {
                 post.content = post.content.slice('0', '300');
             })
