@@ -12,10 +12,14 @@ import styles from './loginpage.module.css';
 function LoginPage() {
     useDocumentTitle('login');
     const navigate = useNavigate();
-    const { setUser } = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext);
 
     const [formData, setFormData] = useState({ username: '', password: '' });
     const [error, setError] = useState(null);
+
+    if (user) {
+        return navigate('/');
+    }
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value })
