@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require("node:path");
 const cookieParser = require('cookie-parser');
+const authenticateToken = require('./middleware/authenticateToken');
 
 const postsRouter = require('./routes/postsRouter');
 const usersRouter = require('./routes/usersRouter');
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+app.use(authenticateToken)
 
 app.use('/api/posts', postsRouter);
 app.use('/api/users', usersRouter);
