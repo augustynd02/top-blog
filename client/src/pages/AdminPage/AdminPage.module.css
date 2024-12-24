@@ -19,7 +19,25 @@
 }
 .actionsContainer li {
     padding: 1rem;
+    cursor: pointer;
 }
-.actionsContainer li img{
+.actionsContainer li img {
     height: var(--size-icon-small);
+    transition: 0.1s ease-out;
+}
+.actionsContainer li:hover img{
+    filter: invert(47%) sepia(4%) saturate(5623%) hue-rotate(234deg) brightness(92%) contrast(96%);
+}
+
+main {
+    padding: 1rem;
+}
+
+/* creator */
+.creatorContainer {
+    width: 50%;
+}
+.creatorContainer form {
+    display: flex;
+    flex-direction: column;
 }
