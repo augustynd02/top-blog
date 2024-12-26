@@ -3,7 +3,11 @@ const prisma = new PrismaClient()
 
 const postsController = {
     getAllPosts: async (req, res) => {
-        const posts = await prisma.post.findMany();
+        const posts = await prisma.post.findMany({
+            include: {
+                tags: true
+            }
+        });
         res.json(posts);
     },
     createPost: async (req, res) => {
