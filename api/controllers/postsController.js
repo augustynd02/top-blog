@@ -36,6 +36,10 @@ const postsController = {
             }
         })
         console.log(post);
+    },
+    getAllTags: async (req, res) => {
+        const tags = await prisma.tag.findMany();
+        res.json(tags);
     }
 }
 
