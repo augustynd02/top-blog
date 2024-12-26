@@ -39,7 +39,7 @@ function AdminPage() {
                         <li onClick={() => {setCurrentSection('analytics')}}><img src={analyticsIcon} alt="Analytics icon" /></li>
                     </ul>
                 </div>
-                <main>
+                <main className={styles.adminMain}>
                     {currentSection === 'create' && <PostCreator />}
                     {currentSection === 'list' && <PostList switchToEdit={switchToEdit} />}
                     {currentSection === 'analytics' && <PostAnalytics />}

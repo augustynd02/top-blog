@@ -9,9 +9,9 @@
 
 :root {
     --color-background: rgb(40, 36, 41);
+    --color-background-lighter: rgb(51, 47, 53);
     --color-primary: #9162ac;
     --color-primary-darker: #4b2d5c;
-    /* #473253; */
     --color-secondary: #E5E7E6;
     --color-border: #4D5258;
 

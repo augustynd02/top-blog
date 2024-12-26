@@ -29,15 +29,7 @@
     filter: invert(47%) sepia(4%) saturate(5623%) hue-rotate(234deg) brightness(92%) contrast(96%);
 }
 
-main {
-    padding: 1rem;
+.adminMain {
+    padding: 2rem;
 }
 
-/* creator */
-.creatorContainer {
-    width: 50%;
-}
-.creatorContainer form {
-    display: flex;
-    flex-direction: column;
-}

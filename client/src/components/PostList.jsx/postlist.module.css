@@ -1,0 +1,18 @@
+h2 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.listContainer {
+    background-color: var(--color-background-lighter);
+    border-radius: 16px;
+}
+
+.post {
+    display: flex;
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-border);
+}
+.post h2 {
+    font-size: 1.5rem;
+}
