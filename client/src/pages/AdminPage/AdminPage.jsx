@@ -1,10 +1,11 @@
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 import useAuth from '../../hooks/useAuth';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
+import PostPreview from '../../components/PostPreview/PostPreview'
 
 import addIcon from '../../assets/icons/add.svg';
 import analyticsIcon from '../../assets/icons/analytics.svg';
@@ -62,8 +63,64 @@ function PostCreator() {
     )
 }
 
-function PostList() {
-    return <h2>list</h2>
+function PostList({ switchToEdit }) {
+    return (
+        <div className="asd">
+            <PostPreview cb={switchToEdit} />
+        </div>
+    )
+}
+
+function EditPost({ currentPost }) {
+    const [formData, setFormData] = useState({ title: currentPost.title, content: currentPost.content, post_id: currentPost.id});
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({...formData, [name]: value});
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch(`http://localhost:3000/api/posts/${currentPost.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                credentials: 'include',
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log('Edited post: ', data.message);
+                navigate('/admin')
+            } else {
+                setError('Error: ', data.message);
+            }
+        } catch (err) {
+            setError('Error: ', err);
+        }
+    }
+
+    return (
+        <>
+            <h2>Edit post</h2>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="title">Title</label>
+                <input type="text" name="title" id="title" value={formData.title} onChange={handleChange}/>
+
+                <label htmlFor="content">Content</label>
+                <textarea name="content" id="content" value={formData.content} onChange={handleChange}></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+        </>
+    )
 }
 
 function PostAnalytics() {
@@ -73,6 +130,11 @@ function PostAnalytics() {
 function AdminPage() {
     useDocumentTitle('admin')
     const [currentSection, setCurrentSection] = useState('list');
+    const [currentPost, setCurrentPost] = useState();
+    const switchToEdit = (post) => {
+        setCurrentSection('edit');
+        setCurrentPost(post)
+    }
     const { user } = useAuth();
     if (!user || user.role_id != 2) {
         return <div>Not an admin</div>
@@ -91,8 +153,9 @@ function AdminPage() {
                 </div>
                 <main>
                     {currentSection === 'create' && <PostCreator />}
-                    {currentSection === 'list' && <PostList />}
+                    {currentSection === 'list' && <PostList switchToEdit={switchToEdit} />}
                     {currentSection === 'analytics' && <PostAnalytics />}
+                    {currentSection === 'edit' && <EditPost currentPost={currentPost} />}
                 </main>
             </div>
             <Footer />

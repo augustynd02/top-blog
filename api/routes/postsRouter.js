@@ -6,5 +6,6 @@ const postsRouter = Router();
 postsRouter.get('/', postsController.getAllPosts);
 postsRouter.post('/', postsController.createPost);
 postsRouter.get('/:post_id', postsController.getPostById);
+postsRouter.put('/:post_id', postsController.editPost);
 
 module.exports = postsRouter;

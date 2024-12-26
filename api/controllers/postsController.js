@@ -25,6 +25,18 @@ const postsController = {
     getPostById: async (req, res) => {
         res.send('one post');
     },
+    editPost: async (req, res) => {
+        const post = await prisma.post.update({
+            where: {
+                id: req.body.post_id
+            },
+            data: {
+                title: req.body.title,
+                content: req.body.content
+            }
+        })
+        console.log(post);
+    }
 }
 
 module.exports = postsController;
