@@ -7,6 +7,7 @@ postsRouter.get('/', postsController.getAllPosts);
 postsRouter.post('/', postsController.createPost);
 // postsRouter.get('/:post_id', postsController.getPostById);
 postsRouter.put('/:post_id', postsController.editPost);
+postsRouter.delete('/:post_id', postsController.deletePost);
 postsRouter.get('/tags', postsController.getAllTags);
 
 module.exports = postsRouter;

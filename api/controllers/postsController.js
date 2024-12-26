@@ -41,6 +41,14 @@ const postsController = {
         })
         console.log(post);
     },
+    deletePost: async (req, res) => {
+        const post = await prisma.post.delete({
+            where: {
+                id: Number(req.params.post_id)
+            }
+        })
+        console.log(post);
+    },
     getAllTags: async (req, res) => {
         const tags = await prisma.tag.findMany();
         res.json(tags);

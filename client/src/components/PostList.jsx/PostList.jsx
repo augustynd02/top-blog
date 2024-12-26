@@ -3,6 +3,21 @@ import { useState, useEffect } from 'react';
 import styles from './postlist.module.css';
 
 function AdminPost({ post, switchToEdit }) {
+    const handleDelete = async (post) => {
+        try {
+            const response = await fetch(`http://localhost:3000/api/posts/${post.id}`, {
+                method: 'DELETE',
+                credentials: 'include'
+            })
+            const data = await response.json();
+
+            if (!response.ok) {
+                console.log(data.message);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
     return (
         <div className={styles.post}>
             <div className={styles.info}>
@@ -13,7 +28,7 @@ function AdminPost({ post, switchToEdit }) {
             </div>
             <div className={styles.actions}>
                 <button type="button" onClick={() => { switchToEdit(post) }}>Edit</button>
-                <button type="button">Delete</button>
+                <button type="button" onClick={() => { handleDelete(post) }}>Delete</button>
             </div>
         </div>
     )
@@ -26,7 +41,10 @@ function PostList({ switchToEdit }) {
     useEffect(() => {
         try {
             const fetchPosts = async () => {
-                const response = await fetch('http://localhost:3000/api/posts');
+                const response = await fetch('http://localhost:3000/api/posts', {
+                    method: 'get',
+                    credentials: 'include'
+                });
                 const data = await response.json();
                 console.log(data);
 
