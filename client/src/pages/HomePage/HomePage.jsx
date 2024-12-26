@@ -33,7 +33,7 @@ function HomePage() {
                 </div>
                 <section>
                     <h2>Available <span>dev</span> blog articles:</h2>
-                    <PostPreview />
+                    <PostPreview cardsPath='/posts'/>
                 </section>
             </main>
             <Footer />
