@@ -36,8 +36,17 @@ model Post {
   user_id Int
   user User @relation(fields: [user_id], references: [id])
   comments Comment[]
+  tags      Tag[]    @relation("PostTags")
 
   @@map("post")
+}
+
+model Tag {
+  id Int @id @default(autoincrement())
+  name String @unique
+  posts Post[]  @relation("PostTags")
+
+  @@map("tag")
 }
 
 model Comment {
