@@ -11,6 +11,7 @@ const postsController = {
         res.json(posts);
     },
     createPost: async (req, res) => {
+        console.log(req.body)
         const user = await prisma.user.findUnique({
             where: {
                 username: req.user.username
@@ -20,7 +21,13 @@ const postsController = {
             data: {
                 title: req.body.title,
                 content: req.body.content,
-                user_id: user.id
+                user_id: user.id,
+                tags: {
+                    connectOrCreate: req.body.tags.map(tag => ({
+                        where: { name: tag.name },
+                        create: { name: tag.name }
+                    }))
+                }
             }
         })
 
