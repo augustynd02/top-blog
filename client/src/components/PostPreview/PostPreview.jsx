@@ -3,7 +3,7 @@ import styles from './postpreview.module.css';
 import { useState, useEffect } from 'react';
 import dummyImage from '../../assets/images/hero.jpg'
 
-function PostPreview({ cb }) {
+function PostPreview() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
@@ -21,28 +21,14 @@ function PostPreview({ cb }) {
     return (
         <div className={styles.postsPreviewContainer}>
             {posts.map(post => (
-                <Card key={post.id} post={post} cb={cb}/>
+                <Card key={post.id} post={post}/>
             ))}
         </div>
     )
 }
 
-function Card({ post, cb }) {
+function Card({ post }) {
     const postPath = `posts/${post.title.replace(' ', '-')}`
-    if (cb) {
-        return (
-            <article className={styles.preview} onClick={() => cb(post)}>
-                <div className={styles.cover}>
-                    <img src={dummyImage} />
-                </div>
-                <div className={styles.content}>
-                    <h3>{post.title}</h3>
-                    <span>{post.created_at}</span>
-                    <p>{post.content}</p>
-                </div>
-            </article>
-        )
-    }
 
     return (
         <a href={postPath} className={styles.previewWrapper}>
