@@ -34,6 +34,9 @@ const authController = {
         }
     },
     logoutUser: async (req, res) => {
+        if (!res.cookie.token) {
+            return res.status(400).json({ message: 'No active session found '})
+        }
         res.clearCookie('token');
         res.status(205).json({ message: 'Logout successful.' })
     },
