@@ -10,9 +10,21 @@
 :root {
     --color-background: rgb(40, 36, 41);
     --color-background-lighter: rgb(51, 47, 53);
-    --color-primary: #9162ac;
+
+    --color-primary: #955eb4;
+    --color-primary-lighter: #bc7ee0;
     --color-primary-darker: #4b2d5c;
-    --color-secondary: #E5E7E6;
+    --color-secondary: #98D8B8;
+    --color-secondary-lighter: #bff1d8;
+    --color-secondary-darker: #5da782;
+
+    --color-error: rgb(228, 0, 87);
+
+    --tag-background: rgba(137, 77, 177, 0.16);
+    --tag-color: #805AD5;
+
+    --color-font-primary: #E5E7E6;
+    --color-font-primary-darker: #a5a4a4;
     --color-border: #4D5258;
 
     --size-icon-tiny: 16px;
@@ -23,7 +35,7 @@
 
 body {
     background-color: var(--color-background);
-    color: var(--color-secondary);
+    color: var(--color-font-primary);
     margin: 0;
 
     font-family: Raleway;
@@ -43,9 +55,17 @@ main {
     GLOBAL, SITE-WIDE STYLES
 */
 
+.error {
+    color: var(--color-error);
+}
+
+span.highlight {
+    color: var(--color-primary);
+}
+
 a {
     padding: 4px;
-    color: var(--color-secondary);
+    color: var(--color-font-primary);
     text-decoration: none;
     font-size: 1.2rem;
 }
@@ -53,4 +73,14 @@ a {
 a:hover {
     text-decoration: underline;
     text-underline-offset: 4px;
+}
+
+label:has(+ input:required)::after {
+    content: '*';
+    color: var(--color-error);
+    font-size: 2rem;
+    vertical-align: middle;
+    position: relative;
+    left: 2px;
+    top: 2px;
 }
