@@ -1,0 +1,90 @@
+main:has(.loginWrapper) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginWrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginHeader {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+.loginHeader p {
+    color: var(--color-font-primary-darker);
+}
+
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+}
+.loginContainer form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+
+    background-color: var(--color-background-lighter);
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.loginContainer form label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+.loginContainer form input {
+    appearance: none;
+    outline: none;
+    height: 2.5rem;
+    width: 100%;
+    padding: 0 1rem;
+
+    background-color: inherit;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    transition: 0.2s ease-in;
+
+    font-size: 1rem;
+    color: var(--color-font-primary);
+}
+.loginContainer form input:focus {
+    border-color: var(--color-primary);
+    box-shadow: var(--color-primary) 0px 0px 0px 1px;
+}
+.loginContainer form button {
+    height: 3rem;
+
+    appearance: none;
+    border: none;
+    border-radius: 4px;
+    background: linear-gradient(to bottom, var(--color-primary), var(--color-primary-darker));
+    cursor: pointer;
+    background-size: 1px 100px;
+    transition: 0.2s ease;
+
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-font-primary);
+}
+.loginContainer form button:hover {
+    background-position: 100px;
+}
+.loginContainer form p {
+    text-align: center;
+    font-size: 0.9rem;
+    margin: 2rem 0 0 0;
+}
+.loginContainer form a {
+    font-size: inherit;
+    color: var(--color-primary);
+}
+.loginContainer form a:hover {
+    color: var(--color-primary-lighter);
+    text-decoration: none;
+}

@@ -44,7 +44,7 @@ function LoginPage() {
             } else {
                 setError(data.message || 'Unknown error.');
             }
-        } catch(err) {
+        } catch (err) {
             setError('Failed to connect to the server: ' + err);
         }
     }
@@ -52,17 +52,27 @@ function LoginPage() {
         <>
             <Header />
             <main>
-                <h2>Login</h2>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="username">Username</label>
-                    <input type="text" name="username" id="username" onChange={handleChange} />
-
-                    <label htmlFor="password">Password</label>
-                    <input type="text" name="password" id="password" onChange={handleChange} />
-
-                    <button type="submit">Submit</button>
-                </form>
-                {error && <p className={styles.error}>{error}</p>}
+                <div className={styles.loginWrapper}>
+                    <div className={styles.loginContainer}>
+                        <div className={styles.loginHeader}>
+                            <h2>Sign in</h2>
+                            <p>Access your account and <span className="highlight">engage</span> in discussions!</p>
+                        </div>
+                        <form onSubmit={handleSubmit}>
+                            <div className={styles.formField}>
+                                <label htmlFor="username">Username</label>
+                                <input required type="text" name="username" id="username" onChange={handleChange} />
+                            </div>
+                            <div className={styles.formField}>
+                                <label htmlFor="password">Password</label>
+                                <input required type="text" name="password" id="password" onChange={handleChange} />
+                            </div>
+                            <button type="submit">Login</button>
+                            {error && <p className="error">{error}</p>}
+                            <p>Already have an account? <a href="/login">Sign in!</a></p>
+                        </form>
+                    </div>
+                </div>
             </main>
             <Footer />
         </>
