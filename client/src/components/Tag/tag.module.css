@@ -1,0 +1,18 @@
+.tag {
+    border-radius: 9999px;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.date {
+    background-color: rgba(129, 230, 217, 0.16);
+    color: var(--color-secondary);
+}
+
+.category {
+    background-color: var(--tag-background);
+    color: var(--color-primary);
+}
