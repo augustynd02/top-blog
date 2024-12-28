@@ -23,7 +23,7 @@ function useAuth() {
             }
         }
         checkLoginStatus();
-    }, [user])
+    }, [])
 
     return { user, setUser};
 }
