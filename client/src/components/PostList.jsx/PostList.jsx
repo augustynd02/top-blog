@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+import Tag from '../Tag/Tag';
+
 import styles from './postlist.module.css';
 
 function AdminPost({ post, switchToEdit }) {
@@ -18,12 +20,16 @@ function AdminPost({ post, switchToEdit }) {
             console.log(err);
         }
     }
+
     return (
         <div className={styles.post}>
             <div className={styles.info}>
                 <h2>{post.title}</h2>
                 <div className={styles.tags}>
-                    <span>{post.created_at}</span>
+                    <Tag type='date'>{post.created_at}</Tag>
+                    {post.tags.map(tag => {
+                        return <Tag key={tag.id} type='category'>{tag.name}</Tag>
+                    })}
                 </div>
             </div>
             <div className={styles.actions}>
@@ -46,7 +52,6 @@ function PostList({ switchToEdit }) {
                     credentials: 'include'
                 });
                 const data = await response.json();
-                console.log(data);
 
                 if (response.ok) {
                     setPosts(data)
