@@ -75,7 +75,7 @@ a:hover {
     text-underline-offset: 4px;
 }
 
-label:has(+ input:required)::after {
+label:has(+ input:required)::after, label:has(+ textarea:required)::after {
     content: '*';
     color: var(--color-error);
     font-size: 2rem;

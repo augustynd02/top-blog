@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Tag from '../Tag/Tag'
 import styles from './postcreator.module.css';
+import { MdAdd } from "react-icons/md";
 
 function PostCreator() {
     const [formData, setFormData] = useState({title: '', content: ''});
@@ -92,23 +94,45 @@ function PostCreator() {
         <div className={styles.creatorContainer}>
             <h2>Create a blog post</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="title">Post title</label>
-                <input type="text" name="title" id="title" onChange={handleChange}/>
+                <div className={styles.formField}>
+                    <label htmlFor="title">Post title</label>
+                    <input required type="text" name="title" id="title" onChange={handleChange}/>
+                </div>
 
-                <select ref={selectRef}>
-                    {tags.map(tag => {
-                        return <option key={tag.id} value={tag.id}>{tag.name}</option>
-                    })}
-                </select>
-                <button type="button" onClick={handleAddingTag}>Add tag</button>
-                {selectedTags.map(tag => <span key={tag.id}>{tag.name} </span>)};
+                <div className={styles.formField}>
+                    <div className={styles.tagAdder}>
+                        <div>
+                            <label htmlFor="tags">Add tags</label>
+                            <div className={styles.tagSection}>
+                                <select ref={selectRef} name="tags" id="tags">
+                                    {tags.map(tag => {
+                                        return <option key={tag.id} value={tag.id}>{tag.name}</option>
+                                    })}
+                                </select>
+                                <button type="button" onClick={handleAddingTag}>
+                                    <MdAdd />
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor="newTag">Tag not on the list? Add it: </label>
+                            <div className={styles.tagSection}>
+                                <input type="text" name="newTag" id="newTag" ref={newTagRef} />
+                                <button type="button" onClick={handleNewTag}>
+                                    <MdAdd />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.tags}>
+                        {selectedTags.length > 0 ? selectedTags.map(tag => <Tag key={tag.id} type='category'>{tag.name}</Tag>) : <span>No tags added...</span>}
+                    </div>
+                </div>
 
-                <label htmlFor="newTag">Tag not on the list? Add it: </label>
-                <input type="text" name="newTag" id="newTag" ref={newTagRef} />
-                <button type="button" onClick={handleNewTag}>Add</button>
-
-                <label htmlFor="content">Post content</label>
-                <textarea name="content" id="content" onChange={handleChange}></textarea>
+                <div className={styles.formField}>
+                    <label htmlFor="content">Post content</label>
+                    <textarea required name="content" id="content" onChange={handleChange} ></textarea>
+                </div>
 
                 <button type="submit">Post</button>
             </form>
