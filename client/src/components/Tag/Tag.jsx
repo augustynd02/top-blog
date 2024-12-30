@@ -1,8 +1,10 @@
 import styles from './tag.module.css';
 
-function Tag({ type, children }) {
+function Tag({ type, cb, children }) {
+    let classes = [styles.tag, styles[type]]
+    if (cb) classes.push(styles.clickable);
     return (
-        <span className={`${styles.tag} ${styles[type]}`}>{children}</span>
+        <span className={classes.join(' ')} onClick={cb}>{children}</span>
     )
 }
 

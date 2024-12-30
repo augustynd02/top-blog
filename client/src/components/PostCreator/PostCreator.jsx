@@ -59,6 +59,11 @@ function PostCreator() {
         }
     }
 
+    const handleTagDeletion = (e) => {
+        const tagName = e.target.textContent;
+        setSelectedTags(selectedTags.filter(tag => tag == tagName))
+    }
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({...formData, [name]: value});
@@ -125,7 +130,7 @@ function PostCreator() {
                         </div>
                     </div>
                     <div className={styles.tags}>
-                        {selectedTags.length > 0 ? selectedTags.map(tag => <Tag key={tag.id} type='category'>{tag.name}</Tag>) : <span>No tags added...</span>}
+                        {selectedTags.length > 0 ? selectedTags.map(tag => <Tag key={tag.id} type='category' cb={handleTagDeletion}>{tag.name}</Tag>) : <span>No tags added...</span>}
                     </div>
                 </div>
 
