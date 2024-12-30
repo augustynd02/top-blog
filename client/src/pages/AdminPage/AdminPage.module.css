@@ -21,12 +21,14 @@
     padding: 1rem;
     cursor: pointer;
 }
-.actionsContainer li img {
+.actionsContainer li svg {
     height: var(--size-icon-small);
+    color: var(--color-font-primary);
+    width: auto;
     transition: 0.1s ease-out;
 }
-.actionsContainer li:hover img{
-    filter: invert(47%) sepia(4%) saturate(5623%) hue-rotate(234deg) brightness(92%) contrast(96%);
+.actionsContainer li:hover svg {
+    color: var(--color-primary);
 }
 
 .adminMain {
