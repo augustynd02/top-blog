@@ -84,3 +84,7 @@ label:has(+ input:required)::after, label:has(+ textarea:required)::after {
     left: 2px;
     top: 2px;
 }
+
+button {
+    cursor: pointer;
+}

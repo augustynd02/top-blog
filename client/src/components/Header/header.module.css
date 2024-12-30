@@ -43,6 +43,7 @@ li {
 li.headerWelcome {
     border-left: 1px solid var(--color-border);
     padding-left: 1rem;
+    color: var(--color-font-primary-darker)
 }
 
 .styledLink {
