@@ -71,7 +71,7 @@ function PostEditor({ currentPost }) {
             // Create an object with just tag names to connect the post with the tags in Prisma
             const tagNames = selectedTags.map(tag => ({ name: tag.name }));
             console.log(JSON.stringify({ ...formData, tags: tagNames }));
-            const response = await fetch('http://localhost:3000/api/posts', {
+            const response = await fetch(`http://localhost:3000/api/posts/${currentPost.id}`, {
                 method: 'PUT',
                 headers: { 'Content-type': 'application/json'},
                 credentials: 'include',

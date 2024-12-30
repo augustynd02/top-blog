@@ -85,7 +85,7 @@ const postsController = {
 
             const post = await prisma.post.update({
                 where: {
-                    id: req.body.post_id
+                    id: parseInt(req.params.post_id)
                 },
                 data: {
                     title: req.body.title,
