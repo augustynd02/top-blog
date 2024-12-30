@@ -27,7 +27,9 @@
 }
 .post .info .tags {
     display: flex;
+    flex-wrap: wrap;
     gap: 0.5rem;
+    margin-right: 1rem;
 }
 .post .actions {
     display: flex;
