@@ -33,8 +33,8 @@ function AdminPost({ post, switchToEdit }) {
                 </div>
             </div>
             <div className={styles.actions}>
-                <button type="button" onClick={() => { switchToEdit(post) }}>Edit</button>
-                <button type="button" onClick={() => { handleDelete(post) }}>Delete</button>
+                <button type="button" className={styles.edit} onClick={() => { switchToEdit(post) }}>Edit</button>
+                <button type="button" className={styles.delete} onClick={() => { handleDelete(post) }}>Delete</button>
             </div>
         </div>
     )
@@ -66,7 +66,7 @@ function PostList({ switchToEdit }) {
     }, [])
 
     return (
-        <>
+        <div className={styles.postListWrapper}>
             <h2>Posts</h2>
             <div className={styles.listContainer}>
                 {error && <p>{error}</p>}
@@ -74,7 +74,7 @@ function PostList({ switchToEdit }) {
                     return <AdminPost key={post.id} post={post} switchToEdit={switchToEdit}/>
                 })}
             </div>
-        </>
+        </div>
     )
 }
 
