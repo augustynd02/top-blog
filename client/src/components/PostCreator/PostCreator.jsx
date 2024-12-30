@@ -61,7 +61,7 @@ function PostCreator() {
 
     const handleTagDeletion = (e) => {
         const tagName = e.target.textContent;
-        setSelectedTags(selectedTags.filter(tag => tag == tagName))
+        setSelectedTags(selectedTags.filter(tag => tag.name != tagName))
     }
 
     const handleChange = (e) => {
