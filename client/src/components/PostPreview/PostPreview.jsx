@@ -41,7 +41,7 @@ function PostPreview() {
 }
 
 function Card({ post }) {
-    const postPath = `posts/${post.title.replace(' ', '-')}`
+    const postPath = `posts/${post.title.replaceAll(' ', '-')}`
 
     return (
         <a href={postPath} className={styles.previewWrapper}>
