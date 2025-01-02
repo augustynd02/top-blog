@@ -13,6 +13,7 @@
 }
 
 .preview {
+    height: 100%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -27,16 +28,18 @@
 }
 
 .cover {
-    height: 50%;
+    /* height: 50% */
+}
+.cover img {
+    width: 100%;
 }
 
 .content {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    height: 50%;
     padding: 1.5rem;
-    width: 100%;
 }
 .content h3 {
     margin: 0;
@@ -56,6 +59,7 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 5;
+    text-overflow: ellipsis;
     overflow: hidden;
 
     font-size: 0.9rem;
