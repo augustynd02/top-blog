@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient()
+const formatDate = require('../utils/formatDate');
 
 const postsController = {
     getAllPosts: async (req, res) => {
@@ -9,6 +10,9 @@ const postsController = {
                     tags: true
                 }
             });
+            posts.forEach(post => {
+                post.created_at = formatDate(post.created_at);
+            })
             res.status(200).json(posts);
         } catch (err) {
             console.error('Error fetchings posts: ', err);
