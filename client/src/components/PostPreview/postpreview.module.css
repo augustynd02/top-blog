@@ -18,6 +18,8 @@
     overflow: hidden;
 
     border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .preview a {
@@ -29,19 +31,33 @@
 }
 
 .content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     height: 50%;
-    padding: 1rem;
+    padding: 1.5rem;
     width: 100%;
 }
-
 .content h3 {
     margin: 0;
-}
 
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+.content .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
 .content p {
     margin: 0;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 5;
     overflow: hidden;
+
+    font-size: 0.9rem;
+    color: var(--color-font-primary-darker);
 }
