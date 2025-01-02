@@ -1,7 +1,12 @@
 @font-face {
     font-family: 'Raleway';
     src: url('./assets/fonts/Raleway-VariableFont_wght.ttf') format('truetype');
-  }
+}
+
+@font-face {
+    font-family: 'Monsterrat';
+    src: url('./assets/fonts/Montserrat-VariableFont_wght.ttf');
+}
 
 * {
     box-sizing: border-box;
