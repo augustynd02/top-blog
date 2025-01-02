@@ -19,6 +19,25 @@ const postsController = {
             res.status(500).json({ message: 'Internal server error.' });
         }
     },
+    getPostByTitle: async (req, res) => {
+        try {
+            const post = await prisma.post.findUnique({
+                where: {
+                    title: req.params.post_title
+                },
+                include: {
+                    tags: true
+                }
+            })
+            if (post == null) {
+                return res.status(404).json({ message: 'Not found'});
+            }
+            res.status(200).json(post);
+        } catch (err) {
+            console.error('Error fetching post: ', err);
+            res.status(500).json({ message: 'Internal server error. '});
+        }
+    },
     createPost: async (req, res) => {
         if (!req.user) {
             return res.status(401).json({ message: "You're not authorized to perform this operation." });
@@ -63,9 +82,6 @@ const postsController = {
             console.error('Error: ', err);
             return res.status(500).json({ message: 'Internal server error' });
         }
-    },
-    getPostById: async (req, res) => {
-        res.send('one post');
     },
     editPost: async (req, res) => {
         if (!req.user) {
