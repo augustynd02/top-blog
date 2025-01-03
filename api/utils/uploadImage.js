@@ -1,11 +1,24 @@
 const cloudinary = require('cloudinary').v2;
 
-const uploadImage = async (path) => {
+const uploadImage = async (buffer) => {
     try {
-        const result = await cloudinary.uploader.upload(path);
-        console.log(result);
+        const response = await new Promise((resolve, reject) => {
+            cloudinary.uploader.upload_stream(
+                {
+                    resource_type: 'image'
+                },
+                (error, result) => {
+                    if (error) {
+                        reject(error)
+                    } else {
+                        resolve(result)
+                    }
+                }
+            ).end(buffer);
+        });
+        return response;
     } catch (err) {
-        console.error(err);
+        return err;
     }
 }
 
