@@ -2,6 +2,8 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient()
 const formatDate = require('../utils/formatDate');
 
+const uploadImage = require('../utils/uploadImage');
+
 const postsController = {
     getAllPosts: async (req, res) => {
         try {
@@ -39,6 +41,7 @@ const postsController = {
         }
     },
     createPost: async (req, res) => {
+        req.body.tags = JSON.parse(req.body.tags);
         if (!req.user) {
             return res.status(401).json({ message: "You're not authorized to perform this operation." });
         }

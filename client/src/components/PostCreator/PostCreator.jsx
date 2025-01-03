@@ -6,6 +6,7 @@ import { MdAdd } from "react-icons/md";
 
 function PostCreator() {
     const [formData, setFormData] = useState({title: '', content: ''});
+    const [cover, setCover] = useState()
     const [tags, setTags] = useState([]);
     const [selectedTags, setSelectedTags] = useState([]);
     const [error, setError] = useState(null);
@@ -69,18 +70,26 @@ function PostCreator() {
         setFormData({...formData, [name]: value});
     }
 
+    const handleCoverChange = (e) => {
+        setCover(e.target.files[0]);
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
+            const formPayload = new FormData();
+            formPayload.append('title', formData.title);
+            formPayload.append('content', formData.content);
+            formPayload.append('cover', cover)
             // Create an object with just tag names to connect the post with the tags in Prisma
             const tagNames = selectedTags.map(tag => ({ name: tag.name }));
-            console.log(JSON.stringify({ ...formData, tags: tagNames }));
+            formPayload.append('tags', JSON.stringify(tagNames));
+
             const response = await fetch('http://localhost:3000/api/posts', {
                 method: 'POST',
-                headers: { 'Content-type': 'application/json'},
                 credentials: 'include',
-                body: JSON.stringify({ ...formData, tags: tagNames })
+                body: formPayload
             })
 
             const data = await response.json();
@@ -98,10 +107,16 @@ function PostCreator() {
     return (
         <div className={styles.creatorContainer}>
             <h2>Create a blog post</h2>
-            <form onSubmit={handleSubmit}>
+
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className={styles.formField}>
                     <label htmlFor="title">Post title</label>
                     <input required type="text" name="title" id="title" onChange={handleChange}/>
+                </div>
+
+                <div className={styles.formField}>
+                    <label htmlFor="cover">Cover image</label>
+                    <input type="file" name="cover" id="cover" onChange={handleCoverChange} />
                 </div>
 
                 <div className={styles.formField}>
