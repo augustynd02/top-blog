@@ -1,7 +1,6 @@
 import styles from './postpreview.module.css';
 
 import { useState, useEffect } from 'react';
-import dummyImage from '../../assets/images/hero.jpg'
 
 import Tag from '../Tag/Tag';
 
