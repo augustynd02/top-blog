@@ -68,6 +68,25 @@ span.highlight {
     color: var(--color-primary);
 }
 
+button.highlight {
+    height: 3rem;
+
+    appearance: none;
+    border: none;
+    border-radius: 4px;
+    background: linear-gradient(to bottom, var(--color-primary), var(--color-primary-darker));
+    cursor: pointer;
+    background-size: 1px 100px;
+    transition: 0.2s ease;
+
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-font-primary);
+}
+button.highlight:hover {
+    background-position: 100px;
+}
+
 a {
     padding: 4px;
     color: var(--color-font-primary);

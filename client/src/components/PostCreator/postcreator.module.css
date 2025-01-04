@@ -40,24 +40,6 @@
     border-color: var(--color-primary);
     box-shadow: var(--color-primary) 0px 0px 0px 1px;
 }
-.creatorContainer form button[type="submit"] {
-    height: 3rem;
-
-    appearance: none;
-    border: none;
-    border-radius: 4px;
-    background: linear-gradient(to bottom, var(--color-primary), var(--color-primary-darker));
-    cursor: pointer;
-    background-size: 1px 100px;
-    transition: 0.2s ease;
-
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--color-font-primary);
-}
-.creatorContainer form button[type="submit"]:hover {
-    background-position: 100px;
-}
 .creatorContainer form textarea {
     flex: 1;
     width: 100%;

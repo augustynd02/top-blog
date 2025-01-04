@@ -116,7 +116,7 @@ function PostCreator() {
 
                 <div className={styles.formField}>
                     <label htmlFor="cover">Cover image</label>
-                    <input type="file" name="cover" id="cover" onChange={handleCoverChange} />
+                    <input required type="file" name="cover" id="cover" onChange={handleCoverChange} />
                 </div>
 
                 <div className={styles.formField}>
@@ -154,7 +154,7 @@ function PostCreator() {
                     <textarea required name="content" id="content" onChange={handleChange} ></textarea>
                 </div>
 
-                <button type="submit">Post</button>
+                <button type="submit" className="highlight">Post</button>
             </form>
             {error && <p>{error}</p>}
         </div>
