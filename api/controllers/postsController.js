@@ -41,7 +41,6 @@ const postsController = {
         }
     },
     createPost: async (req, res) => {
-        req.body.tags = JSON.parse(req.body.tags);
         if (!req.user) {
             return res.status(401).json({ message: "You're not authorized to perform this operation." });
         }
@@ -61,10 +60,12 @@ const postsController = {
                 return res.status(403).json({ message: "You're forbidden from performing this operation." });
             }
 
+            req.body.tags = JSON.parse(req.body.tags);
             const post = await prisma.post.create({
                 data: {
                     title: req.body.title,
                     content: req.body.content,
+                    cover_url: 'asd',
                     user_id: user.id,
                     tags: {
                         connectOrCreate: req.body.tags.map(tag => ({
@@ -75,7 +76,18 @@ const postsController = {
                 }
             })
 
-            res.status(201).json({ message: `Post created: ${post}`} );
+            // After the post is successfuly created, upload the image to the cloud and update post with url
+            const image = await uploadImage(req.file.buffer)
+            const updatedPost = await prisma.post.update({
+                where: {
+                    id: post.id
+                },
+                data: {
+                    cover_url: image.url
+                }
+            })
+
+            res.status(201).json({ message: `Post created: ${updatedPost}`} );
 
         } catch (err) {
             if (err.code == 'P2002') {
