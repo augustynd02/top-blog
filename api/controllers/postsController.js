@@ -34,6 +34,7 @@ const postsController = {
             if (post == null) {
                 return res.status(404).json({ message: 'Not found'});
             }
+            post.created_at = formatDate(post.created_at);
             res.status(200).json(post);
         } catch (err) {
             console.error('Error fetching post: ', err);
