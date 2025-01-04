@@ -5,11 +5,20 @@ function LogoutPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const response = fetch('http://localhost:3000/api/auth/session', {
-            method: 'DELETE',
-            credentials: 'include'
-        })
-        navigate(-1);
+        const logout = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/auth/session', {
+                    method: 'DELETE',
+                    credentials: 'include'
+                })
+                const data = await response.json();
+                console.log(data);
+            } catch (err) {
+                console.log(err);
+            }
+            navigate(-1);
+        }
+        logout();
     }, [])
 }
 
