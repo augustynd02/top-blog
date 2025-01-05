@@ -175,6 +175,26 @@ const postsController = {
             return res.status(500).json({ message: 'Internal server error' });
         }
     },
+    getComments: async (req, res) => {
+        try {
+            const post = await prisma.post.findUnique({
+                where: {
+                    title: req.params.post_title
+                }
+            });
+
+            const comments = await prisma.comment.findMany({
+                where: {
+                    post_id: post.id
+                }
+            })
+
+            return res.status(200).json(comments);
+        } catch (err) {
+            console.error('Error getting comments: ', err);
+            return res.status(500).json({ message: 'Internal server error' });
+        }
+    },
     createComment: async (req, res) => {
         try {
             const user = await prisma.user.findUnique({
@@ -195,7 +215,7 @@ const postsController = {
                 }
             })
 
-            return res.status(201).json({ message: `Comment created: ${comment}`});
+            return res.status(201).json(comment);
         } catch (err) {
             console.error('Error creating comment: ', err);
             return res.status(500).json({ message: 'Internal server error' });

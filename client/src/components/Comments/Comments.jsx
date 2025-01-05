@@ -1,5 +1,5 @@
 import styles from './comments.module.css';
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 
 function Comments({ post }) {
@@ -8,6 +8,26 @@ function Comments({ post }) {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState("");
 
+    useEffect(() => {
+        const getComments = async () => {
+            try {
+                const formattedTitle = post.title.replaceAll('-', ' ');
+                const response = await fetch(`http://localhost:3000/api/posts/${formattedTitle}/comments`, {
+                    method: 'GET'
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    setComments(data)
+                } else {
+                    setError(data.message)
+                }
+            } catch (err) {
+                setError(err);
+            }
+        }
+        getComments();
+    }, [post])
+
     const handleChange = (e) => {
         setNewComment(e.target.value);
     }
@@ -15,7 +35,6 @@ function Comments({ post }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(user);
         try {
             const formattedTitle = post.title.replaceAll('-', ' ');
             const response = await fetch(`http://localhost:3000/api/posts/${formattedTitle}/comments`, {
@@ -27,9 +46,8 @@ function Comments({ post }) {
                 body: JSON.stringify({ content: newComment, post_id: post.id, username: user.username })
             });
             const data = await response.json();
-
             if (response.ok) {
-                console.log(data);
+                setComments([...comments, data]);
             } else {
                 setError(data.message);
             }
@@ -50,18 +68,16 @@ function Comments({ post }) {
             <div className={styles.commentsContainer}>
                 <h3>Comments: </h3>
                 <div className={styles.comments}>
-
+                    { comments.map(comment => {
+                        return (
+                            <div key={comment.id} className={styles.comment}>
+                                {comment.content}
+                            </div>
+                        )
+                    }) }
                 </div>
             </div>
         </section>
-    )
-}
-
-function Comment() {
-    return (
-        <div className={styles.comment}>
-
-        </div>
     )
 }
 

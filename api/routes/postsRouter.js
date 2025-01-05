@@ -13,6 +13,7 @@ postsRouter.put('/:post_id', upload.single('cover'), postsController.editPost);
 postsRouter.delete('/:post_id', postsController.deletePost);
 postsRouter.get('/tags', postsController.getAllTags);
 postsRouter.get('/:post_title', postsController.getPostByTitle);
+postsRouter.get('/:post_title/comments', postsController.getComments);
 postsRouter.post('/:post_title/comments', postsController.createComment);
 
 module.exports = postsRouter;
