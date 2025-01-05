@@ -6,10 +6,10 @@ function Comments({ post }) {
     const { user } = useContext(AuthContext)
     const [error, setError] = useState(null);
     const [comments, setComments] = useState([]);
-    const [newComment, setNewComment] = useState({ content: "" });
+    const [newComment, setNewComment] = useState("");
 
     const handleChange = (e) => {
-        setNewComment({ content: e.target.value});
+        setNewComment(e.target.value);
     }
 
     const handleSubmit = async (e) => {
@@ -29,7 +29,7 @@ function Comments({ post }) {
             const data = await response.json();
 
             if (response.ok) {
-                setComments(data)
+                console.log(data);
             } else {
                 setError(data.message);
             }
