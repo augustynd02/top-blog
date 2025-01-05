@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Tag from '../../components/Tag/Tag';
+import Comments from '../../components/Comments/Comments';
 
 import styles from './postpage.module.css';
 
@@ -60,6 +61,7 @@ function PostPage() {
                         <p>{post.content}</p>
                     </div>
                 </article>
+                <Comments post={post}/>
             </main>
             <Footer />
         </>

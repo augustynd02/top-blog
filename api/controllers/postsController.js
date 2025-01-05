@@ -174,6 +174,32 @@ const postsController = {
             console.error('Error getting tags: ', err);
             return res.status(500).json({ message: 'Internal server error' });
         }
+    },
+    createComment: async (req, res) => {
+        try {
+            const user = await prisma.user.findUnique({
+                where: {
+                    username: req.body.username
+                }
+            })
+
+            if (!user) {
+                return res.status(401).json({ message: "Couldn't verify user. "})
+            }
+
+            const comment = await prisma.comment.create({
+                data: {
+                    content: req.body.content,
+                    post_id: req.body.post_id,
+                    user_id: user.id
+                }
+            })
+
+            return res.status(201).json({ message: `Comment created: ${comment}`});
+        } catch (err) {
+            console.error('Error creating comment: ', err);
+            return res.status(500).json({ message: 'Internal server error' });
+        }
     }
 }
 
