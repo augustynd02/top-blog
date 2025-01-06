@@ -1,6 +1,7 @@
 import styles from './comments.module.css';
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
+import Tag from '../Tag/Tag';
 
 function Comments({ post }) {
     const { user } = useContext(AuthContext)
@@ -57,27 +58,42 @@ function Comments({ post }) {
     }
 
     return (
-        <section>
-            <div className={styles.commentCreator}>
-                <h3>Leave a comment</h3>
-                <form onSubmit={handleSubmit}>
-                    <textarea name="comment" id="comment" onChange={handleChange}></textarea>
-                    <button type="submit">Comment</button>
-                </form>
+        <section className={styles.commentsWrapper}>
+            <div className={styles.commentCreatorWrapper}>
+                <div className={styles.commentCreator}>
+                    <h3>Leave a comment</h3>
+                    <form onSubmit={handleSubmit}>
+                        <label htmlFor="comment">Message</label>
+                        <textarea required name="comment" id="comment" onChange={handleChange}></textarea>
+                        <button type="submit" className="highlight">Comment</button>
+                    </form>
+                </div>
             </div>
             <div className={styles.commentsContainer}>
                 <h3>Comments: </h3>
                 <div className={styles.comments}>
                     { comments.map(comment => {
                         return (
-                            <div key={comment.id} className={styles.comment}>
-                                {comment.content}
-                            </div>
+                            <Comment key={comment.id} username={comment.user} date={comment.created_at} content={comment.content} />
                         )
                     }) }
                 </div>
             </div>
         </section>
+    )
+}
+
+function Comment({ username, date, content }) {
+    return (
+        <div className={styles.comment}>
+            <div className={styles.commentInfo}>
+                <span>{username}</span>
+                <Tag type="date">{date}</Tag>
+            </div>
+            <div className={styles.commentContent}>
+                <p>{content}</p>
+            </div>
+        </div>
     )
 }
 
