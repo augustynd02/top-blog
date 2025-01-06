@@ -31,7 +31,7 @@ function HomePage() {
                         <img src={heroImage} alt="Coding hero image" />
                     </div>
                 </div>
-                <section>
+                <section className={styles.postPreviewWrapper}>
                     <h2>Available <span>dev</span> blog articles:</h2>
                     <PostPreview cardsPath='/posts'/>
                 </section>

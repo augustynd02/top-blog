@@ -55,17 +55,12 @@ h2 span {
     border-left: 1px solid var(--color-border);
 }
 
-img {
-    max-width: 100%;
-    height: 100%;
-}
-
-section h2 {
+section.postPreviewWrapper h2 {
     font-size: 3rem;
     text-align: center;
 }
 
-section {
+section.postPreviewWrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
