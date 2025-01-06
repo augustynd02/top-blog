@@ -186,10 +186,15 @@ const postsController = {
             const comments = await prisma.comment.findMany({
                 where: {
                     post_id: post.id
+                },
+                include: {
+                    user: true
                 }
             })
 
-            return res.status(200).json(comments);
+            const updatedComments = comments.map(comment => ({ ...comment, user: comment.user.username }))
+
+            return res.status(200).json(updatedComments);
         } catch (err) {
             console.error('Error getting comments: ', err);
             return res.status(500).json({ message: 'Internal server error' });
