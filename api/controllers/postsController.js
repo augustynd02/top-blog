@@ -192,6 +192,9 @@ const postsController = {
                 }
             })
 
+            comments.forEach(comment => {
+                comment.created_at = formatDate(comment.created_at);
+            })
             const updatedComments = comments.map(comment => ({ ...comment, user: comment.user.username }))
 
             return res.status(200).json(updatedComments);
