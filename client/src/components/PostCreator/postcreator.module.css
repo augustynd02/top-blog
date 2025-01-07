@@ -100,30 +100,6 @@
     font-size: 1rem;
 }
 
-.tagSection select {
-    height: 2.5rem;
-    padding: 0 0.5rem;
-
-    background-color: inherit;
-    color: var(--color-font-primary);
-    border: 1px solid var(--color-border);
-    transition: 0.2s ease-in;
-}
-
-.tagSection select:focus {
-    outline: none;
-    box-shadow: var(--color-primary) 0px 0px 0px 1px;
-    border-color: var(--color-primary);
-}
-
-.tagSection select:focus + button {
-    box-shadow: var(--color-primary) 0px 0px 0px 1px;
-}
-
-.tagSection option {
-    background-color: var(--color-background-lighter);
-}
-
 .formField:has(textarea) {
     flex: 1;
     display: flex;

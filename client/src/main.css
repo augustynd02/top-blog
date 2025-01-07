@@ -59,6 +59,26 @@ main {
 /*
     GLOBAL, SITE-WIDE STYLES
 */
+select {
+    height: 2.5rem;
+    padding: 0 0.5rem;
+
+    background-color: inherit;
+    color: var(--color-font-primary);
+    border: 1px solid var(--color-border);
+    transition: 0.2s ease-in;
+}
+
+select:focus {
+    outline: none;
+    box-shadow: var(--color-primary) 0px 0px 0px 1px;
+    border-color: var(--color-primary);
+}
+
+option {
+    background-color: var(--color-background);
+}
+
 
 img {
     max-width: 100%;
