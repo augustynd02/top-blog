@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 
 import Tag from '../Tag/Tag';
 
-function PostPreview() {
+function PostPreview({ category }) {
     const [posts, setPosts] = useState([]);
+    const [filteredPosts, setFilteredPosts] = useState([])
 
     useEffect(() => {
         try {
@@ -19,6 +20,7 @@ function PostPreview() {
                         post.content = post.content.slice('0', '300');
                     })
                     setPosts(result);
+                    setFilteredPosts(result);
                 } else {
                     console.log(result.message);
                 }
@@ -30,9 +32,18 @@ function PostPreview() {
         }
 
     }, [])
+
+    useEffect(() => {
+        if (category != "default") {
+            setFilteredPosts(posts.filter(post => post.tags.some(e => e.name == category)));
+        } else {
+            setFilteredPosts(posts);
+        }
+    }, [category, posts])
+
     return (
         <div className={styles.postsPreviewContainer}>
-            {posts.map(post => (
+            {filteredPosts.map(post => (
                 <Card key={post.id} post={post}/>
             ))}
         </div>

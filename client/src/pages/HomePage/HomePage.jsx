@@ -8,9 +8,40 @@ import useDocumentTitle from "../../hooks/useDocumentTitle";
 import styles from "./homepage.module.css";
 import heroImage from "../../assets/images/hero.jpg";
 
+import { useState, useEffect } from "react";
 
 function HomePage() {
     useDocumentTitle('home');
+    const [tags, setTags] = useState([]);
+    const [error, setError] = useState(null);
+    const [category, setCategory] = useState("default")
+
+    useEffect(() => {
+        const getTags = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/posts/tags', {
+                    method: 'GET',
+                    credentials: 'include',
+                })
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    setTags(data)
+                } else {
+                    setError('Error fetching tags: ', data.message);
+                }
+            }
+            catch (err) {
+                setError('Error: ' + err)
+            }
+        }
+        getTags()
+    }, [])
+
+    const handleChange = (e) => {
+        setCategory(e.target.value);
+    }
 
     return (
         <>
@@ -33,7 +64,13 @@ function HomePage() {
                 </div>
                 <section className={styles.postPreviewWrapper}>
                     <h2>Available <span>dev</span> blog articles:</h2>
-                    <PostPreview cardsPath='/posts'/>
+                    <select name="category" id="category" onChange={handleChange}>
+                        <option value="default">All categories</option>
+                        {tags.map(tag => {
+                            return <option key={tag.id} value={tag.name}>{tag.name}</option>
+                        })}
+                    </select>
+                    <PostPreview category={category} />
                 </section>
             </main>
             <Footer />
