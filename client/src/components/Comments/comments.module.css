@@ -75,6 +75,11 @@
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
+
+.commentInfo {
+    display: flex;
+    align-items: center;
+}
 .commentInfo span {
     width: fit-content;
 }
@@ -85,7 +90,6 @@
 }
 .commentInfo span:last-child {
     font-size: 0.6rem;
-    vertical-align: middle;
 }
 .commentContent p {
     margin: 0;
