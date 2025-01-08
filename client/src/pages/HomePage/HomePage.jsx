@@ -15,6 +15,7 @@ function HomePage() {
     const [tags, setTags] = useState([]);
     const [error, setError] = useState(null);
     const [category, setCategory] = useState("default")
+    const [query, setQuery] = useState("");
 
     useEffect(() => {
         const getTags = async () => {
@@ -39,8 +40,12 @@ function HomePage() {
         getTags()
     }, [])
 
-    const handleChange = (e) => {
+    const handleCategoryChange = (e) => {
         setCategory(e.target.value);
+    }
+
+    const handleQueryChange = (e) => {
+        setQuery(e.target.value);
     }
 
     return (
@@ -64,13 +69,14 @@ function HomePage() {
                 </div>
                 <section className={styles.postPreviewWrapper}>
                     <h2>Available <span>dev</span> blog articles:</h2>
-                    <select name="category" id="category" onChange={handleChange}>
+                    <input type="text" name="query" id="query" onChange={handleQueryChange}/>
+                    <select name="category" id="category" onChange={handleCategoryChange}>
                         <option value="default">All categories</option>
                         {tags.map(tag => {
                             return <option key={tag.id} value={tag.name}>{tag.name}</option>
                         })}
                     </select>
-                    <PostPreview category={category} />
+                    <PostPreview category={category} query={query} />
                 </section>
             </main>
             <Footer />

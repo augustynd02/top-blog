@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 import Tag from '../Tag/Tag';
 
-function PostPreview({ category }) {
+function PostPreview({ category, query }) {
     const [posts, setPosts] = useState([]);
     const [filteredPosts, setFilteredPosts] = useState([])
 
@@ -34,12 +34,15 @@ function PostPreview({ category }) {
     }, [])
 
     useEffect(() => {
+        const regex = new RegExp(`.*${query}.*`, 'i');
+        let filteredPosts = posts.filter(post => post.title.match(regex));
+
         if (category != "default") {
-            setFilteredPosts(posts.filter(post => post.tags.some(e => e.name == category)));
-        } else {
-            setFilteredPosts(posts);
+            filteredPosts = filteredPosts.filter(post => post.tags.some(e => e.name == category))
         }
-    }, [category, posts])
+
+        setFilteredPosts(filteredPosts);
+    }, [query, category, posts])
 
     return (
         <div className={styles.postsPreviewContainer}>
