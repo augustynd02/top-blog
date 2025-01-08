@@ -69,13 +69,15 @@ function HomePage() {
                 </div>
                 <section className={styles.postPreviewWrapper}>
                     <h2>Available <span>dev</span> blog articles:</h2>
-                    <input type="text" name="query" id="query" onChange={handleQueryChange}/>
-                    <select name="category" id="category" onChange={handleCategoryChange}>
-                        <option value="default">All categories</option>
-                        {tags.map(tag => {
-                            return <option key={tag.id} value={tag.name}>{tag.name}</option>
-                        })}
-                    </select>
+                    <div className={styles.filterContainer}>
+                        <input type="text" name="query" id="query" onChange={handleQueryChange}/>
+                        <select name="category" id="category" onChange={handleCategoryChange}>
+                            <option value="default">All categories</option>
+                            {tags.map(tag => {
+                                return <option key={tag.id} value={tag.name}>{tag.name}</option>
+                            })}
+                        </select>
+                    </div>
                     <PostPreview category={category} query={query} />
                 </section>
             </main>
