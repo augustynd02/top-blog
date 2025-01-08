@@ -70,13 +70,14 @@ function Comments({ post }) {
                 </div>
             </div>
             <div className={styles.commentsContainer}>
-                <h3>Comments: </h3>
+                <h3>Comments ({comments.length}) </h3>
                 <div className={styles.comments}>
                     { comments.map(comment => {
                         return (
                             <Comment key={comment.id} username={comment.user} date={comment.created_at} content={comment.content} />
                         )
                     }) }
+                    { comments.length == 0 &&<p> No comments yet...</p>}
                 </div>
             </div>
         </section>
