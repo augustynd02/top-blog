@@ -70,7 +70,7 @@ function HomePage() {
                 <section className={styles.postPreviewWrapper}>
                     <h2>Available <span>dev</span> blog articles:</h2>
                     <div className={styles.filterContainer}>
-                        <input type="text" name="query" id="query" onChange={handleQueryChange}/>
+                        <input type="text" name="query" id="query" onChange={handleQueryChange} placeholder="Search by title..." />
                         <select name="category" id="category" onChange={handleCategoryChange}>
                             <option value="default">All categories</option>
                             {tags.map(tag => {
