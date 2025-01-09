@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import HomePage from "./pages/HomePage/HomePage";
 import PostPage from "./pages/PostPage/PostPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
@@ -13,6 +15,8 @@ import './main.css';
 
 function App() {
   return (
+    <>
+    <Header />
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<HomePage />} />
@@ -27,6 +31,8 @@ function App() {
             <Route path="*" element={<NotFoundPage />} />
         </Routes>
     </BrowserRouter>
+    <Footer />
+    </>
   )
 }
 

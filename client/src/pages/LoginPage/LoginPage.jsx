@@ -1,8 +1,5 @@
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext'
@@ -50,7 +47,6 @@ function LoginPage() {
     }
     return (
         <>
-            <Header />
             <main>
                 <div className={styles.loginWrapper}>
                     <div className={styles.loginContainer}>
@@ -74,7 +70,6 @@ function LoginPage() {
                     </div>
                 </div>
             </main>
-            <Footer />
         </>
     )
 }

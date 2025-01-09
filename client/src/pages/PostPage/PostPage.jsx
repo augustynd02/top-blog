@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
 import Tag from '../../components/Tag/Tag';
 import Comments from '../../components/Comments/Comments';
 
@@ -41,7 +39,6 @@ function PostPage() {
 
     return (
         <>
-            <Header />
             <main>
                 <article className={styles.post}>
                     <div className={styles.cover}>
@@ -62,7 +59,6 @@ function PostPage() {
                 </article>
                 <Comments post={post}/>
             </main>
-            <Footer />
         </>
     )
 }

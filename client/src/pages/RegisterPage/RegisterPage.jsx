@@ -1,8 +1,5 @@
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -44,7 +41,6 @@ function RegisterPage() {
     }
     return (
         <>
-            <Header />
             <main>
                 <div className={styles.registerWrapper}>
                     <div className={styles.registerContainer}>
@@ -68,7 +64,6 @@ function RegisterPage() {
                     </div>
                 </div>
             </main>
-            <Footer />
         </>
     )
 }

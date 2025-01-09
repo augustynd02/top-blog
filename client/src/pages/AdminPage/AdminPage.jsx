@@ -2,8 +2,6 @@ import useDocumentTitle from '../../hooks/useDocumentTitle';
 import useAuth from '../../hooks/useAuth';
 import { useState } from 'react';
 
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
 import PostCreator from '../../components/PostCreator/PostCreator';
 import PostEditor from '../../components/PostEditor/PostEditor';
 import PostList from '../../components/PostList.jsx/PostList';
@@ -29,7 +27,6 @@ function AdminPage() {
 
     return (
         <>
-            <Header />
             <div className={styles.adminWrapper}>
                 <div className={styles.actionsContainer}>
                     <ul>
@@ -45,7 +42,6 @@ function AdminPage() {
                     {currentSection === 'edit' && <PostEditor currentPost={currentPost} />}
                 </main>
             </div>
-            <Footer />
         </>
     )
 }

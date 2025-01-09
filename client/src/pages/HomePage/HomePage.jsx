@@ -1,5 +1,3 @@
-import Footer from "../../components/Footer/Footer";
-import Header from "../../components/Header/Header";
 import Link from "../../components/Link/Link";
 import PostPreview from "../../components/PostPreview/PostPreview";
 
@@ -50,7 +48,6 @@ function HomePage() {
 
     return (
         <>
-            <Header />
             <main>
                 <div className={styles.welcomeContainer}>
                     <div className={styles.welcomeMessage}>
@@ -81,7 +78,6 @@ function HomePage() {
                     <PostPreview category={category} query={query} />
                 </section>
             </main>
-            <Footer />
         </>
     )
 }
