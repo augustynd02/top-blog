@@ -27,7 +27,7 @@ const authController = {
                 maxAge: 604800000,
                 sameSite: 'Lax',
             });
-            res.status(200).json({ message: 'Login successful' })
+            res.status(200).json({ message: 'Login successful', user: { username: user.username, role_id: user.role_id } })
         } catch(err) {
             console.error(err);
             res.status(500).json({ message: 'Internal server error' });

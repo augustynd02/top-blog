@@ -1,6 +1,6 @@
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext'
 
@@ -14,9 +14,12 @@ function LoginPage() {
     const [formData, setFormData] = useState({ username: '', password: '' });
     const [error, setError] = useState(null);
 
-    if (user) {
-        return navigate('/');
-    }
+    useEffect(() => {
+        if (user) {
+            navigate('/');
+        }
+    }, [user, navigate]);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value })
@@ -34,7 +37,7 @@ function LoginPage() {
             });
 
             const data = await response.json();
-
+            console.log(data);
             if (response.ok) {
                 setUser(data.user)
                 navigate('/')

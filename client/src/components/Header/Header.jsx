@@ -7,6 +7,7 @@ import { AuthContext } from '../../contexts/AuthContext'
 
 function Header() {
     const { user } = useContext(AuthContext);
+    console.log(user);
 
     return (
         <header>
