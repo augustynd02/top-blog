@@ -1,0 +1,37 @@
+main.aboutWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.aboutContainer {
+    width: 60%;
+    margin: 0 auto 1rem;
+
+    text-align: justify;
+}
+
+.aboutContainer h2 {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.aboutContainer p {
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+}
+
+.aboutContainer .avatar {
+    shape-outside: circle(50%);
+    border-radius: 9999px;
+    margin: 1rem;
+    aspect-ratio: 1/1;
+    width: 20%;
+    float: left;
+}
+
+.aboutContainer .avatar img{
+    border-radius: 9999px;
+    transform-style: preserve-3d;
+    transition: transform 100ms ease;
+}
