@@ -1,6 +1,5 @@
 import styles from './aboutpage.module.css';
 import avatar from '../../assets/images/avatar.jpg';
-import { useRef } from 'react';
 
 function AboutPage() {
 
