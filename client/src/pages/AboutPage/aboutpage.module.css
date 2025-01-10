@@ -47,6 +47,7 @@ main.aboutWrapper {
 
     transform: rotateY(90deg);
     animation: spin 2s ease forwards;
+    animation-delay: 600ms;
 }
 
 .aboutContainer .avatar img{
