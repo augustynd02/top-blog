@@ -19,6 +19,22 @@ main.aboutWrapper {
 .aboutContainer p {
     font-size: 1.1rem;
     line-height: 1.5rem;
+
+    opacity: 0;
+    transform: translateY(100px);
+    animation: appear 1s forwards;
+}
+.aboutContainer p:nth-child(3) {
+    animation-delay: 100ms;
+}
+.aboutContainer p:nth-child(4) {
+    animation-delay: 400ms;
+}
+.aboutContainer p:nth-child(5) {
+    animation-delay: 700ms;
+}
+.aboutContainer p:nth-child(6) {
+    animation-delay: 1100ms;
 }
 
 .aboutContainer .avatar {
@@ -28,10 +44,28 @@ main.aboutWrapper {
     aspect-ratio: 1/1;
     width: 20%;
     float: left;
+
+    transform: rotateY(90deg);
+    animation: spin 2s ease forwards;
 }
 
 .aboutContainer .avatar img{
     border-radius: 9999px;
     transform-style: preserve-3d;
-    transition: transform 100ms ease;
+}
+
+@keyframes appear {
+    100% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotateY(90deg);
+    }
+    100% {
+        transform: rotateY(0deg);
+    }
 }
