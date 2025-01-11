@@ -43,7 +43,7 @@ app.use((err, req, res, next) => {
         body: req.body,
         error: err.stack
     });
-    res.status(statusCode).json({
+    res.status(err.statusCode).json({
         success: false,
         status: err.statusCode || 500,
         message: err.message || 'Internal server error',
