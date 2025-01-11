@@ -63,6 +63,9 @@
 .tagSection input:focus + button {
     box-shadow: var(--color-primary) 0px 0px 0px 1px;
 }
+.tagSection select:focus + button {
+    box-shadow: var(--color-primary) 0px 0px 0px 1px;
+}
 .tagSection button {
     display: flex;
     justify-content: center;
