@@ -4,7 +4,7 @@ const CustomError = require('../utils/CustomError');
 const prisma = new PrismaClient();
 
 const usersController = {
-    createUser: async (req, res) => {
+    createUser: async (req, res, next) => {
         try {
             req.body.password = await bcrypt.hash(req.body.password, 10);
             const user = await prisma.user.create({
@@ -19,7 +19,7 @@ const usersController = {
             if (err.code == 'P2002') {
                 next(new CustomError(409, 'This username is already taken.'));
             }
-            next(Err);
+            next(err);
         }
     },
 }

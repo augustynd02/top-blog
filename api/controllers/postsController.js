@@ -113,7 +113,7 @@ const postsController = {
             next(err);
         }
     },
-    editPost: async (req, res) => {
+    editPost: async (req, res, next) => {
         if (!req.user) {
             throw new CustomError(401, "You're not authorized to perform this operation.");
         }
@@ -165,7 +165,7 @@ const postsController = {
         }
 
     },
-    deletePost: async (req, res) => {
+    deletePost: async (req, res, next) => {
         if (!req.user) {
             throw new CustomError(401, "You're not authorized to perform this operation.");
         }
@@ -186,7 +186,7 @@ const postsController = {
             next(err);
         }
     },
-    getAllTags: async (req, res) => {
+    getAllTags: async (req, res, next) => {
         try {
             const tags = await prisma.tag.findMany();
 
@@ -198,7 +198,7 @@ const postsController = {
             next(err);
         }
     },
-    getComments: async (req, res) => {
+    getComments: async (req, res, next) => {
         try {
             const post = await prisma.post.findUnique({
                 where: {
@@ -219,11 +219,6 @@ const postsController = {
                 }
             })
 
-            if (comments == null || comments.length === 0) {
-                throw new CustomError(404, `Comments under post ${req.parms.post_title} were not found.`);
-            }
-
-
             comments.forEach(comment => {
                 comment.created_at = formatDate(comment.created_at);
             })
@@ -234,7 +229,7 @@ const postsController = {
             next(err);
         }
     },
-    createComment: async (req, res) => {
+    createComment: async (req, res, next) => {
         try {
             const user = await prisma.user.findUnique({
                 where: {
