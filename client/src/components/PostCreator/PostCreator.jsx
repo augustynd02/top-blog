@@ -4,7 +4,7 @@ import Tag from '../Tag/Tag'
 import styles from './postcreator.module.css';
 import { MdAdd } from "react-icons/md";
 
-function PostCreator() {
+function PostCreator({ switchToList }) {
     const [formData, setFormData] = useState({title: '', content: ''});
     const [cover, setCover] = useState()
     const [tags, setTags] = useState([]);
@@ -12,7 +12,6 @@ function PostCreator() {
     const [error, setError] = useState(null);
     const selectRef = useRef(null);
     const newTagRef = useRef(null);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const getTags = async () => {
@@ -95,7 +94,7 @@ function PostCreator() {
             const data = await response.json();
 
             if (response.ok) {
-                navigate('/admin')
+                switchToList();
             } else {
                 setError(data.message || 'Unknown error.');
             }

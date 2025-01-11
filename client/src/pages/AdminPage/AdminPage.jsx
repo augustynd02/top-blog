@@ -16,10 +16,16 @@ function AdminPage() {
     useDocumentTitle('admin')
     const [currentSection, setCurrentSection] = useState('list');
     const [currentPost, setCurrentPost] = useState();
+
     const switchToEdit = (post) => {
         setCurrentSection('edit');
         setCurrentPost(post)
     }
+
+    const switchToList = () => {
+        setCurrentSection('list');
+    }
+
     const { user } = useAuth();
     if (!user || user.role_id != 2) {
         return <div>Not an admin</div>
@@ -36,10 +42,10 @@ function AdminPage() {
                     </ul>
                 </div>
                 <main className={styles.adminMain}>
-                    {currentSection === 'create' && <PostCreator />}
+                    {currentSection === 'create' && <PostCreator switchToList={switchToList} />}
                     {currentSection === 'list' && <PostList switchToEdit={switchToEdit} />}
                     {currentSection === 'analytics' && <PostAnalytics />}
-                    {currentSection === 'edit' && <PostEditor currentPost={currentPost} />}
+                    {currentSection === 'edit' && <PostEditor currentPost={currentPost} switchToList={switchToList}/>}
                 </main>
             </div>
         </>

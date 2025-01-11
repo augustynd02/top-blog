@@ -4,14 +4,13 @@ import Tag from '../Tag/Tag'
 import styles from './posteditor.module.css';
 import { MdAdd } from "react-icons/md";
 
-function PostEditor({ currentPost }) {
+function PostEditor({ currentPost, switchToList }) {
     const [formData, setFormData] = useState({title: currentPost.title, content: currentPost.content});
     const [tags, setTags] = useState([]);
     const [selectedTags, setSelectedTags] = useState([...currentPost.tags]);
     const [error, setError] = useState(null);
     const selectRef = useRef(null);
     const newTagRef = useRef(null);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const getTags = async () => {
@@ -86,7 +85,7 @@ function PostEditor({ currentPost }) {
             const data = await response.json();
 
             if (response.ok) {
-                navigate('/admin')
+                switchToList();
             } else {
                 setError(data.message || 'Unknown error.');
             }
