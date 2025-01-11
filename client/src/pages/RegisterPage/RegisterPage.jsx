@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './registerpage.module.css';
+import Error from '../../components/Error/Error';
 
 function RegisterPage() {
     useDocumentTitle('register');
@@ -20,6 +21,8 @@ function RegisterPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setError(null);
+
         try {
             const response = await fetch('http://localhost:3000/api/users', {
                 method: 'POST',
@@ -31,6 +34,7 @@ function RegisterPage() {
 
             if (response.ok) {
                 navigate('/login')
+                setError(null);
             } else {
                 const data = await response.json();
                 setError(data.message || 'Unknown error.');
@@ -58,11 +62,11 @@ function RegisterPage() {
                                 <input required type="text" name="password" id="password" onChange={handleChange} />
                             </div>
                             <button type="submit">Register</button>
-                            {error && <p className="error">{error}</p>}
                             <p>Already have an account? <a href="/login">Sign in!</a></p>
                         </form>
                     </div>
                 </div>
+                { error ? <Error message={error} /> : null }
             </main>
         </>
     )

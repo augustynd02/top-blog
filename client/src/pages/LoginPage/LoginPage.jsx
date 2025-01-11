@@ -3,6 +3,7 @@ import useDocumentTitle from '../../hooks/useDocumentTitle';
 import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext'
+import Error from '../../components/Error/Error';
 
 import styles from './loginpage.module.css';
 
@@ -28,6 +29,8 @@ function LoginPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setError(null);
+
         try {
             const response = await fetch('http://localhost:3000/api/auth', {
                 method: 'POST',
@@ -40,6 +43,7 @@ function LoginPage() {
             console.log(data);
             if (response.ok) {
                 setUser(data.user)
+                setError(null);
                 navigate('/')
             } else {
                 setError(data.message || 'Unknown error.');
@@ -67,12 +71,12 @@ function LoginPage() {
                                 <input required type="text" name="password" id="password" onChange={handleChange} />
                             </div>
                             <button type="submit">Login</button>
-                            {error && <p className="error">{error}</p>}
                             <p>Don&apos;t have an account yet? <a href="/register">Sign up!</a></p>
                         </form>
                     </div>
                 </div>
             </main>
+            { error ? <Error message={error} /> : null }
         </>
     )
 }

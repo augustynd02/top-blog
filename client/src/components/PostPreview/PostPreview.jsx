@@ -4,10 +4,12 @@ import { useState, useEffect } from 'react';
 
 import Tag from '../Tag/Tag';
 import Loader from '../Loader/Loader';
+import Error from '../../components/Error/Error';
 
 function PostPreview({ category, query }) {
     const [posts, setPosts] = useState([]);
     const [filteredPosts, setFilteredPosts] = useState([])
+    const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -21,10 +23,11 @@ function PostPreview({ category, query }) {
                     result.forEach(post => {
                         post.content = post.content.slice('0', '300');
                     })
+                    setError(null);
                     setPosts(result);
                     setFilteredPosts(result);
                 } else {
-                    console.log(result.message);
+                    setError('Error fetching posts: ' + result.message);
                 }
 
                 setIsLoading(false);
@@ -32,7 +35,7 @@ function PostPreview({ category, query }) {
 
             fetchPosts();
         } catch (err) {
-            console.log(err);
+            setError(err)
         }
 
     }, [])
@@ -57,6 +60,7 @@ function PostPreview({ category, query }) {
             {filteredPosts.map(post => (
                 <Card key={post.id} post={post}/>
             ))}
+            { error ? <Error message={error} /> : null }
         </div>
     )
 }

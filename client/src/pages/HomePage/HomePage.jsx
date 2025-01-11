@@ -5,6 +5,7 @@ import useDocumentTitle from "../../hooks/useDocumentTitle";
 
 import styles from "./homepage.module.css";
 import heroImage from "../../assets/images/hero.jpg";
+import Error from '../../components/Error/Error';
 
 import { useState, useEffect } from "react";
 
@@ -77,6 +78,7 @@ function HomePage() {
                     </div>
                     <PostPreview category={category} query={query} />
                 </section>
+                { error ? <Error message={error} /> : null }
             </main>
         </>
     )
