@@ -1,3 +1,5 @@
+const CustomError = require('../utils/CustomError');
+
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient()
 const formatDate = require('../utils/formatDate');
@@ -5,23 +7,29 @@ const formatDate = require('../utils/formatDate');
 const uploadImage = require('../utils/uploadImage');
 
 const postsController = {
-    getAllPosts: async (req, res) => {
+    getAllPosts: async (req, res, next) => {
         try {
             const posts = await prisma.post.findMany({
                 include: {
                     tags: true
                 }
             });
+
+            if(!posts || posts.length === 0) {
+                throw new CustomError(404, 'No posts found.');
+            }
+
             posts.forEach(post => {
                 post.created_at = formatDate(post.created_at);
             })
+
             res.status(200).json(posts);
         } catch (err) {
-            console.error('Error fetchings posts: ', err);
-            res.status(500).json({ message: 'Internal server error.' });
+            next(err);
         }
     },
-    getPostByTitle: async (req, res) => {
+
+    getPostByTitle: async (req, res, next) => {
         try {
             const post = await prisma.post.findUnique({
                 where: {
@@ -32,22 +40,24 @@ const postsController = {
                 }
             })
             if (post == null) {
-                return res.status(404).json({ message: 'Not found'});
+                throw new CustomError(404, `Post ${req.params.post_title} was not found.`);
             }
+
             post.created_at = formatDate(post.created_at);
+
             res.status(200).json(post);
         } catch (err) {
-            console.error('Error fetching post: ', err);
-            res.status(500).json({ message: 'Internal server error. '});
+            next(err);
         }
     },
-    createPost: async (req, res) => {
+
+    createPost: async (req, res, next) => {
         if (!req.user) {
-            return res.status(401).json({ message: "You're not authorized to perform this operation." });
+            throw new CustomError(401, "You're not authorized to perform this operation.");
         }
 
         if (!req.body.title || !req.body.content) {
-            return res.status(400).json({ message: "Fields must not be empty."} );
+           throw new CustomError(400, 'Fields must not be empty.')
         }
 
         try {
@@ -57,11 +67,16 @@ const postsController = {
                 }
             })
 
+            if (user == null) {
+                throw new CustomError(404, `User ${req.user.username} was not found on the server.`);
+            }
+
             if (user.role_id != 2) {
-                return res.status(403).json({ message: "You're forbidden from performing this operation." });
+                throw new CustomError(403, "You're forbidden from performing this operation.");
             }
 
             req.body.tags = JSON.parse(req.body.tags);
+
             const post = await prisma.post.create({
                 data: {
                     title: req.body.title,
@@ -92,20 +107,19 @@ const postsController = {
 
         } catch (err) {
             if (err.code == 'P2002') {
-                return res.status(409).json({ message: 'A post with that title already exists. '});
+                next(new CustomError(409, 'A post with this title already exists.'));
             }
 
-            console.error('Error: ', err);
-            return res.status(500).json({ message: 'Internal server error' });
+            next(err);
         }
     },
     editPost: async (req, res) => {
         if (!req.user) {
-            return res.status(401).json({ message: "You're not authorized to perform this operation." });
+            throw new CustomError(401, "You're not authorized to perform this operation.");
         }
 
         if (!req.body.title || !req.body.content) {
-            return res.status(400).json({ message: "Fields must not be empty."} );
+            throw new CustomError(400, 'Fields must not be empty.')
         }
 
         try {
@@ -115,8 +129,12 @@ const postsController = {
                 }
             })
 
+            if (user == null) {
+                throw new CustomError(404, `User ${req.user.username} was not found on the server.`);
+            }
+
             if (user.role_id != 2) {
-                return res.status(403).json({ message: "You're forbidden from performing this operation." });
+                throw new CustomError(403, "You're forbidden from performing this operation.");
             }
 
             const post = await prisma.post.update({
@@ -140,17 +158,16 @@ const postsController = {
 
         } catch (err) {
             if (err.code == 'P2002') {
-                return res.status(409).json({ message: 'A post with that title already exists. '});
+                next(new CustomError(409, 'A post with this title already exists.'));
             }
 
-            console.error('Error editing post: ', err);
-            return res.status(500).json({ message: 'Internal server error' });
+            next(err);
         }
 
     },
     deletePost: async (req, res) => {
         if (!req.user) {
-            return res.status(401).json({ message: "You're not authorized to perform this operation." });
+            throw new CustomError(401, "You're not authorized to perform this operation.");
         }
 
         try {
@@ -160,19 +177,25 @@ const postsController = {
                 }
             })
 
+            if (post == null) {
+                throw new CustomError(404, `Post ${req.user.username} was not found.`);
+            }
+
             res.status(200).json({ message: `Post has been deleted: ${post}`})
         } catch (err) {
-            console.error('Error deleting post: ', err);
-            return res.status(500).json({ message: 'Internal server error' });
+            next(err);
         }
     },
     getAllTags: async (req, res) => {
         try {
             const tags = await prisma.tag.findMany();
+
+            if (tags == null || tags.length === 0) {
+                throw new CustomError(404, "Tags not found");
+            }
             res.status(200).json(tags);
         } catch (err) {
-            console.error('Error getting tags: ', err);
-            return res.status(500).json({ message: 'Internal server error' });
+            next(err);
         }
     },
     getComments: async (req, res) => {
@@ -183,6 +206,10 @@ const postsController = {
                 }
             });
 
+            if (post == null) {
+                throw new CustomError(404, `Post ${req.params.post_title} was not found.`);
+            }
+
             const comments = await prisma.comment.findMany({
                 where: {
                     post_id: post.id
@@ -192,6 +219,11 @@ const postsController = {
                 }
             })
 
+            if (comments == null || comments.length === 0) {
+                throw new CustomError(404, `Comments under post ${req.parms.post_title} were not found.`);
+            }
+
+
             comments.forEach(comment => {
                 comment.created_at = formatDate(comment.created_at);
             })
@@ -199,8 +231,7 @@ const postsController = {
 
             return res.status(200).json(updatedComments);
         } catch (err) {
-            console.error('Error getting comments: ', err);
-            return res.status(500).json({ message: 'Internal server error' });
+            next(err);
         }
     },
     createComment: async (req, res) => {
@@ -211,8 +242,8 @@ const postsController = {
                 }
             })
 
-            if (!user) {
-                return res.status(401).json({ message: "Couldn't verify user. "})
+            if (user == null) {
+                throw new CustomError(404, `User ${req.user.username} was not found on the server.`);
             }
 
             const comment = await prisma.comment.create({
@@ -225,8 +256,7 @@ const postsController = {
 
             return res.status(201).json(comment);
         } catch (err) {
-            console.error('Error creating comment: ', err);
-            return res.status(500).json({ message: 'Internal server error' });
+            next(err);
         }
     }
 }

@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const { PrismaClient } = require('@prisma/client');
+const CustomError = require('../utils/CustomError');
 const prisma = new PrismaClient();
 
 const usersController = {
@@ -15,11 +16,10 @@ const usersController = {
             })
             res.status(201).json({ message: 'User created successfully.' })
         } catch(err) {
-            console.error(err);
             if (err.code == 'P2002') {
-                return res.status(409).json({ message: 'This username is already taken.'});
+                next(new CustomError(409, 'This username is already taken.'));
             }
-            res.status(500).json({ message: 'An error has occured while creating the user.'});
+            next(Err);
         }
     },
 }
