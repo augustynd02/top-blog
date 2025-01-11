@@ -44,7 +44,7 @@ const authController = {
         if (req.user) {
             return res.status(200).json({ message: 'Login authentication successful.', user: req.user });
         }
-        throw new CustomError(401, "Login authentication failed.");
+        res.status(401).json({ message: 'Login authentication failed'});
     }
 }
 
