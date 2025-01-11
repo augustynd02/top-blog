@@ -3,10 +3,12 @@ import styles from './postpreview.module.css';
 import { useState, useEffect } from 'react';
 
 import Tag from '../Tag/Tag';
+import Loader from '../Loader/Loader';
 
 function PostPreview({ category, query }) {
     const [posts, setPosts] = useState([]);
     const [filteredPosts, setFilteredPosts] = useState([])
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         try {
@@ -24,6 +26,8 @@ function PostPreview({ category, query }) {
                 } else {
                     console.log(result.message);
                 }
+
+                setIsLoading(false);
             }
 
             fetchPosts();
@@ -43,6 +47,10 @@ function PostPreview({ category, query }) {
 
         setFilteredPosts(filteredPosts);
     }, [query, category, posts])
+
+    if (isLoading) {
+        return <Loader />
+    }
 
     return (
         <div className={styles.postsPreviewContainer}>
