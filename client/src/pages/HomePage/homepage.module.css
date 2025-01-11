@@ -19,6 +19,10 @@
 .messageContainer h2 {
     font-size: 3.5em;
     margin: 1rem 0;
+
+    transform: translateY(100px);
+    opacity: 0;
+    animation: appear 1s forwards;
 }
 
 h2 span {
@@ -28,6 +32,10 @@ h2 span {
 .messageContainer p {
     font-size: 1.2rem;
     line-height: 2rem;
+
+    opacity: 0;
+    animation: appear 1s forwards;
+    animation-delay: 500ms;
 }
 
 .action {
@@ -119,5 +127,12 @@ section.postPreviewWrapper {
 
     .action {
         justify-content: center;
+    }
+}
+
+@keyframes appear {
+    100% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
     }
 }
