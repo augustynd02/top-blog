@@ -38,11 +38,17 @@ app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
 
 app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(err.statusCode || 500).json({
-        message: err.message || 'Internal server error'
+    console.error(`ERROR: ${req.method} ${req.url}`, {
+        user: req.user ? req.user.username : 'Unauthenticated user',
+        body: req.body,
+        error: err.stack
     });
-})
+    res.status(statusCode).json({
+        success: false,
+        status: err.statusCode || 500,
+        message: err.message || 'Internal server error',
+    });
+});
 
 const port = process.env.SERVER_PORT || 3000;
 app.listen(port, () => console.log("Listening on port 3000..."));
