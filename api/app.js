@@ -37,5 +37,12 @@ app.use('/api/posts', postsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
 
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(err.statusCode || 500).json({
+        message: err.message || 'Internal server error'
+    });
+})
+
 const port = process.env.SERVER_PORT || 3000;
 app.listen(port, () => console.log("Listening on port 3000..."));
