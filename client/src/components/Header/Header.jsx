@@ -14,7 +14,7 @@ function Header() {
             <div className={styles.headerContainer}>
                 <div className={styles.logoContainer}>
                     <img src={logo} alt="logo" className={styles.logo}/>
-                    <h1>aspdevs</h1>
+                    <h1>asp<span className="highlight">devs</span></h1>
                 </div>
                 <nav>
                     <ul>
