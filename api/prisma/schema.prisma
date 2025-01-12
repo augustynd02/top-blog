@@ -35,7 +35,7 @@ model Post {
   created_at DateTime @default(now())
   is_published Boolean @default(false)
   user_id Int
-  user User @relation(fields: [user_id], references: [id])
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
   comments Comment[]
   tags      Tag[]    @relation("PostTags")
 
@@ -55,9 +55,9 @@ model Comment {
   content String
   created_at DateTime @default(now())
   post_id Int
-  post Post @relation(fields: [post_id], references: [id])
+  post Post @relation(fields: [post_id], references: [id], onDelete: Cascade)
   user_id Int
-  user User @relation(fields: [user_id], references: [id])
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@map("comment")
 }
