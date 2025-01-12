@@ -153,7 +153,7 @@ function PostEditor({ currentPost, switchToList }) {
                     <textarea required name="content" id="content" value={formData.content} onChange={handleChange} ></textarea>
                 </div>
 
-                <button type="submit">Edit</button>
+                <button type="submit" className="highlight">Edit</button>
             </form>
             {error && <p>{error}</p>}
         </div>
