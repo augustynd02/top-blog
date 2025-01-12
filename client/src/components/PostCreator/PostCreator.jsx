@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Tag from '../Tag/Tag'
 import styles from './postcreator.module.css';
 import { MdAdd } from "react-icons/md";

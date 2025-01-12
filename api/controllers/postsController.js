@@ -156,6 +156,18 @@ const postsController = {
                 }
             })
 
+            if (req.file) {
+                const image = await uploadImage(req.file.buffer)
+                const updatedPost = await prisma.post.update({
+                    where: {
+                        id: post.id
+                    },
+                    data: {
+                        cover_url: image.url
+                    }
+                })
+            }
+
             res.status(200).json({ message: `Post edited: ${post}`} );
 
         } catch (err) {
