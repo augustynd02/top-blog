@@ -137,6 +137,8 @@ const postsController = {
                 throw new CustomError(403, "You're forbidden from performing this operation.");
             }
 
+            req.body.tags = JSON.parse(req.body.tags);
+
             const post = await prisma.post.update({
                 where: {
                     id: parseInt(req.params.post_id)
