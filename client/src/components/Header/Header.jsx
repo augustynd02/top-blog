@@ -2,12 +2,17 @@ import styles from './header.module.css';
 import logo from '../../assets/icons/logo.svg';
 
 import Link from '../Link/Link';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthContext'
+import { RxHamburgerMenu } from "react-icons/rx";
 
 function Header() {
     const { user } = useContext(AuthContext);
-    console.log(user);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    }
 
     return (
         <header>
@@ -17,7 +22,7 @@ function Header() {
                     <h1>asp<span className="highlight">devs</span></h1>
                 </div>
                 <nav>
-                    <ul>
+                    <ul className={styles.desktop}>
                         <li><Link href="/" isStyled={false} >Homepage</Link></li>
                         <li><Link href="/about-me" isStyled={false} >About me</Link></li>
                             {user ? (
@@ -32,6 +37,27 @@ function Header() {
                                 </>
                             )}
                     </ul>
+
+                    <RxHamburgerMenu className={styles.menu} onClick={toggleMenu}/>
+                    {isMenuOpen && (
+                        <ul className={styles.mobile}>
+                        <li><Link href="/" isStyled={false} >Homepage</Link></li>
+                            <li><Link href="/about-me" isStyled={false} >About me</Link></li>
+                                {user ? (
+                                    <>
+                                        <div className={styles.logoutContainer}>
+                                            <span className={styles.headerWelcome}>Welcome, {user.username}!</span>
+                                            <li><Link href='/logout' isStyled={true}>Logout</Link></li>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <li><Link href="/login" isStyled={false} >Login</Link></li>
+                                        <li><Link href="/register" isStyled={true} >Sign up</Link></li>
+                                    </>
+                                )}
+                        </ul>
+                    )}
                 </nav>
             </div>
         </header>
