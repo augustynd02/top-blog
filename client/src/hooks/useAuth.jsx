@@ -6,7 +6,7 @@ function useAuth() {
     useEffect(() => {
         async function checkLoginStatus() {
             try {
-                const response = await fetch('http://localhost:3000/api/auth/session', {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/session`, {
                     method: 'GET',
                     credentials: 'include',
                 })

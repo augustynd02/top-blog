@@ -15,7 +15,7 @@ function PostPage() {
         try {
             const getPost = async () => {
                 const formattedTitle = title.replaceAll('-', ' ');
-                const response = await fetch(`http://localhost:3000/api/posts/${formattedTitle}`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${formattedTitle}`, {
                     method: 'GET',
                 });
 

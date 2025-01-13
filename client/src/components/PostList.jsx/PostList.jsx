@@ -7,7 +7,7 @@ import styles from './postlist.module.css';
 function AdminPost({ post, switchToEdit }) {
     const handleDelete = async (post) => {
         try {
-            const response = await fetch(`http://localhost:3000/api/posts/${post.id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${post.id}`, {
                 method: 'DELETE',
                 credentials: 'include'
             })
@@ -47,7 +47,7 @@ function PostList({ switchToEdit }) {
     useEffect(() => {
         try {
             const fetchPosts = async () => {
-                const response = await fetch('http://localhost:3000/api/posts', {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/posts`, {
                     method: 'get',
                     credentials: 'include'
                 });

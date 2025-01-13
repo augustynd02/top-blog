@@ -15,7 +15,7 @@ function PostCreator({ switchToList }) {
     useEffect(() => {
         const getTags = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/posts/tags', {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/tags`, {
                     method: 'GET',
                     credentials: 'include',
                 })
@@ -84,7 +84,7 @@ function PostCreator({ switchToList }) {
             const tagNames = selectedTags.map(tag => ({ name: tag.name }));
             formPayload.append('tags', JSON.stringify(tagNames));
 
-            const response = await fetch('http://localhost:3000/api/posts', {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/posts`, {
                 method: 'POST',
                 credentials: 'include',
                 body: formPayload

@@ -13,7 +13,7 @@ function Comments({ post }) {
         const getComments = async () => {
             try {
                 const formattedTitle = post.title.replaceAll('-', ' ');
-                const response = await fetch(`http://localhost:3000/api/posts/${formattedTitle}/comments`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${formattedTitle}/comments`, {
                     method: 'GET'
                 });
                 const data = await response.json();
@@ -38,7 +38,7 @@ function Comments({ post }) {
 
         try {
             const formattedTitle = post.title.replaceAll('-', ' ');
-            const response = await fetch(`http://localhost:3000/api/posts/${formattedTitle}/comments`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${formattedTitle}/comments`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {

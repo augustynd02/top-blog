@@ -19,7 +19,7 @@ function HomePage() {
     useEffect(() => {
         const getTags = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/posts/tags', {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/tags`, {
                     method: 'GET',
                     credentials: 'include',
                 })
