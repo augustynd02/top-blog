@@ -45,6 +45,7 @@ article.post .tags span {
 article.post .content {
     width: 50%;
     margin: 0 auto;
+    white-space: pre-wrap;
 }
 
 article.post .content p {

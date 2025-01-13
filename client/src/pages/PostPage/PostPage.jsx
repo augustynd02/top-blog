@@ -4,6 +4,7 @@ import Tag from '../../components/Tag/Tag';
 import Comments from '../../components/Comments/Comments';
 
 import styles from './postpage.module.css';
+import insertNewlines from '../../utils/insertNewLines';
 
 function PostPage() {
     const [post, setPost] = useState({});
@@ -24,6 +25,9 @@ function PostPage() {
                 } else {
                     setError(data.message);
                 }
+
+                data.content = insertNewlines(data.content);
+                console.log(data);
             }
             getPost();
         } catch (err) {
