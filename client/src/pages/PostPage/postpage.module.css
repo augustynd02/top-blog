@@ -1,5 +1,5 @@
 article.post {
-    width: 50%;
+    width: 100%;
     margin: 0 auto 2rem auto;
     display: flex;
     flex-direction: column;
@@ -7,8 +7,9 @@ article.post {
 }
 
 article.post .cover {
-    width: 100%;
+    width: 50%;
     height: 300px;
+    margin: 0 auto;
 
     border-radius: 0 0 16px 16px;
     overflow: hidden;
@@ -20,6 +21,8 @@ article.post img {
 }
 
 article.post .info {
+    width: 50%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -39,9 +42,26 @@ article.post .tags span {
     font-size: 1em;
 }
 
+article.post .content {
+    width: 50%;
+    margin: 0 auto;
+}
+
 article.post .content p {
     margin: 0;
 
     font-size: 1.2em;
     color: var(--color-font-primary-darker);
+}
+
+@media screen and (max-width: 1320px) {
+    article.post .content, article.post .info, article.post .cover {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    article.post .cover {
+        width: 100%;
+    }
 }

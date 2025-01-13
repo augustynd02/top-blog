@@ -23,6 +23,7 @@ main:has(.registerWrapper) {
 .registerContainer {
     display: flex;
     flex-direction: column;
+    margin: 1rem;
 }
 .registerContainer form {
     display: flex;

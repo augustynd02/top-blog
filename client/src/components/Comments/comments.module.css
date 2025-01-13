@@ -1,5 +1,5 @@
 .commentsWrapper {
-    width: 50%;
+    width: 100%;
     margin: 0 auto;
 
     border-top: 1px solid var(--color-border);
@@ -10,6 +10,8 @@
 }
 .commentCreator {
     padding: 2rem;
+    width: 50%;
+    margin: 0 auto;
 }
 
 .commentCreator h3 {
@@ -52,6 +54,8 @@
 
 .commentsContainer {
     padding: 2rem;
+    width: 50%;
+    margin: 0 auto;
 }
 .commentsContainer h3 {
     margin: 0;
@@ -99,4 +103,20 @@
 }
 .commentContent p {
     margin: 0;
+}
+
+@media screen and (max-width: 1320px) {
+    .commentCreator, .commentsContainer {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .commentCreator, .commentsContainer {
+        width: 100%;
+    }
+
+    .cover {
+        width: 100%;
+    }
 }

@@ -23,6 +23,7 @@ main:has(.loginWrapper) {
 .loginContainer {
     display: flex;
     flex-direction: column;
+    margin: 1rem;
 }
 .loginContainer form {
     display: flex;

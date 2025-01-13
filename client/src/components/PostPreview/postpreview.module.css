@@ -8,7 +8,7 @@
     margin-top: 0;
 
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(clamp(200px, 100%, 300px), 1fr));
     gap: 2rem;
 }
 
@@ -68,4 +68,11 @@
 
     font-size: 0.9rem;
     color: var(--color-font-primary-darker);
+}
+
+@media screen and (max-width: 650px) {
+    .postsPreviewContainer {
+        margin: 0;
+        width: 100%;
+    }
 }
