@@ -72,7 +72,7 @@ function Card({ post }) {
         <a href={postPath} className={styles.previewWrapper}>
             <article className={styles.preview}>
                     <div className={styles.cover}>
-                        <img src={post.cover_url} />
+                        <img src={post.cover_url} alt="Cover image" />
                     </div>
                     <div className={styles.content}>
                         <h3>{post.title}</h3>

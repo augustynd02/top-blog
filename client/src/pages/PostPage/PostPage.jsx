@@ -45,7 +45,7 @@ function PostPage() {
             <main>
                 <article className={styles.post}>
                     <div className={styles.cover}>
-                        <img src={post.cover_url} />
+                        <img src={post.cover_url} alt="Cover image"/>
                     </div>
                     <div className={styles.info}>
                         <h2>{post.title}</h2>
