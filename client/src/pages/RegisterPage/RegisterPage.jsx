@@ -30,8 +30,6 @@ function RegisterPage() {
                 body: JSON.stringify(formData),
             });
 
-            console.log(response);
-
             if (response.ok) {
                 navigate('/login')
                 setError(null);

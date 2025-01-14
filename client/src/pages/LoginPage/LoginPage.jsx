@@ -40,7 +40,6 @@ function LoginPage() {
             });
 
             const data = await response.json();
-            console.log(data);
             if (response.ok) {
                 setUser(data.user)
                 setError(null);

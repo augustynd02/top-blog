@@ -39,7 +39,6 @@ function PostEditor({ currentPost, switchToList }) {
         const value = selectRef.current.value;
         const tag = tags.find(tag => tag.id == value);
         if (!selectedTags.includes(tag)) {
-            console.log(selectedTags);
             setSelectedTags([...selectedTags, tag])
         }
     }

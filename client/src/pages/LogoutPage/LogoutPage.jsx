@@ -6,16 +6,11 @@ function LogoutPage() {
 
     useEffect(() => {
         const logout = async () => {
-            try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/session`, {
-                    method: 'DELETE',
-                    credentials: 'include'
-                })
-                const data = await response.json();
-                console.log(data);
-            } catch (err) {
-                console.log(err);
-            }
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/session`, {
+                method: 'DELETE',
+                credentials: 'include'
+            })
+            await response.json();
             navigate(-1);
         }
         logout();

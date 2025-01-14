@@ -5,6 +5,7 @@ import Tag from '../Tag/Tag';
 import styles from './postlist.module.css';
 
 function AdminPost({ post, switchToEdit }) {
+    const [error, setError] = useState(null);
     const handleDelete = async (post) => {
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${post.id}`, {
@@ -12,12 +13,11 @@ function AdminPost({ post, switchToEdit }) {
                 credentials: 'include'
             })
             const data = await response.json();
-
-            if (!response.ok) {
-                console.log(data.message);
+            if (response.ok) {
+                setError(null);
             }
         } catch (err) {
-            console.log(err);
+            setError(err)
         }
     }
 
