@@ -26,7 +26,8 @@ const authController = {
             res.cookie('token', token, {
                 httpOnly: true,
                 maxAge: 604800000,
-                sameSite: 'Lax',
+                sameSite: 'None',
+                secure: true
             });
             res.status(200).json({ message: 'Login successful', user: { username: user.username, role_id: user.role_id } })
         } catch(err) {
