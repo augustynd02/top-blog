@@ -27,7 +27,6 @@ function PostPage() {
                 }
 
                 data.content = insertNewlines(data.content);
-                console.log(data);
             }
             getPost();
         } catch (err) {
