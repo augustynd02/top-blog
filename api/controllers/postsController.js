@@ -217,6 +217,9 @@ const postsController = {
             const post = await prisma.post.findUnique({
                 where: {
                     title: req.params.post_title
+                },
+                orderBy: {
+                    created_at: 'desc'
                 }
             });
 
