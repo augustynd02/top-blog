@@ -91,9 +91,6 @@ li {
     text-align: center;
 }
 
-.mobile li:last-child {
-}
-
 .mobile li:last-child a {
     display: block;
     width: 100%;
