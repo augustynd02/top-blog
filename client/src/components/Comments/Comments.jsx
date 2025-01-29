@@ -2,6 +2,7 @@ import styles from './comments.module.css';
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import Tag from '../Tag/Tag';
+import Error from '../Error/Error';
 
 function Comments({ post }) {
     const { user } = useContext(AuthContext)
@@ -58,6 +59,7 @@ function Comments({ post }) {
     }
 
     return (
+        <>
         <section className={styles.commentsWrapper}>
             <div className={styles.commentCreatorWrapper}>
                 <div className={styles.commentCreator}>
@@ -81,6 +83,8 @@ function Comments({ post }) {
                 </div>
             </div>
         </section>
+        { error ? <Error message={error} /> : null }
+        </>
     )
 }
 
