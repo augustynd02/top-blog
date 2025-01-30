@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import Tag from '../Tag/Tag';
 import Error from '../Error/Error';
+import Loader from '../Loader/Loader';
 
 function Comments({ post }) {
     const { user } = useContext(AuthContext)
@@ -13,6 +14,11 @@ function Comments({ post }) {
     useEffect(() => {
         const getComments = async () => {
             try {
+
+                if (!post || !post.title) {
+                    return;
+                }
+
                 const formattedTitle = post.title.replaceAll('-', ' ');
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${formattedTitle}/comments`, {
                     method: 'GET'
