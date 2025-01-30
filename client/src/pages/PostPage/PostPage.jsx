@@ -36,7 +36,7 @@ function PostPage() {
         }
     }, [title])
 
-    if (!post) {
+    if (!post.title) {
         return <Loader />
     }
 
