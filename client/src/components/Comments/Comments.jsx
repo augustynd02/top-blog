@@ -24,7 +24,7 @@ function Comments({ post }) {
                     setError(data.message)
                 }
             } catch (err) {
-                setError(err);
+                setError(`Failed to fetch comments: ${err.message || err}`);
             }
         }
         getComments();
@@ -51,10 +51,10 @@ function Comments({ post }) {
             if (response.ok) {
                 setComments([...comments, data]);
             } else {
-                setError(data.message);
+                setError(data.message || 'Unknown error.');
             }
         } catch(err) {
-            setError(err);
+            setError(`Failed to fetch comments: ${err.message || err}`);
         }
     }
 
