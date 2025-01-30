@@ -16,6 +16,7 @@ function PostPage() {
     useEffect(() => {
         try {
             const getPost = async () => {
+                await new Promise(r => setTimeout(r, 3000));
                 const formattedTitle = title.replaceAll('-', ' ');
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${formattedTitle}`, {
                     method: 'GET',
@@ -37,7 +38,7 @@ function PostPage() {
     }, [title])
 
     if (!post.title) {
-        return <Loader />
+        return <main className={styles.postPageMain}> <Loader /> </main>
     }
 
     if (error) {
@@ -48,7 +49,7 @@ function PostPage() {
 
     return (
         <>
-            <main>
+            <main className={styles.postPageMain}>
                 <article className={styles.post}>
                     <div className={styles.cover}>
                         <img src={post.cover_url} alt="Cover image"/>
