@@ -16,7 +16,7 @@ function Comments({ post }) {
             try {
 
                 if (!post || !post.title) {
-                    return;
+                    return <Loader />
                 }
 
                 const formattedTitle = post.title.replaceAll('-', ' ');
