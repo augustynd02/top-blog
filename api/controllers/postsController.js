@@ -218,9 +218,6 @@ const postsController = {
                 where: {
                     title: req.params.post_title
                 },
-                orderBy: {
-                    created_at: 'desc'
-                }
             });
 
             if (post == null) {
@@ -233,6 +230,9 @@ const postsController = {
                 },
                 include: {
                     user: true
+                },
+                orderBy: {
+                    created_at: 'desc'
                 }
             })
 
