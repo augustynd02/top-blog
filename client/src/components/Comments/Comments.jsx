@@ -3,7 +3,6 @@ import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import Tag from '../Tag/Tag';
 import Error from '../Error/Error';
-import Loader from '../Loader/Loader';
 
 function Comments({ post }) {
     const { user } = useContext(AuthContext)
@@ -16,7 +15,7 @@ function Comments({ post }) {
             try {
 
                 if (!post || !post.title) {
-                    return <Loader />
+                    return;
                 }
 
                 const formattedTitle = post.title.replaceAll('-', ' ');

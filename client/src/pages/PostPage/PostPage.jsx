@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Tag from '../../components/Tag/Tag';
 import Comments from '../../components/Comments/Comments';
 import Error from '../../components/Error/Error';
+import Loader from '../../components/Loader/Loader';
 
 import styles from './postpage.module.css';
 import insertNewlines from '../../utils/insertNewLines';
@@ -34,6 +35,10 @@ function PostPage() {
             setError(err.message);
         }
     }, [title])
+
+    if (!post) {
+        return <Loader />
+    }
 
     if (error) {
         return (
