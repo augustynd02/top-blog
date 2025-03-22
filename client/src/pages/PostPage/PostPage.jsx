@@ -16,7 +16,6 @@ function PostPage() {
     useEffect(() => {
         try {
             const getPost = async () => {
-                await new Promise(r => setTimeout(r, 3000));
                 const formattedTitle = title.replaceAll('-', ' ');
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/posts/${formattedTitle}`, {
                     method: 'GET',
