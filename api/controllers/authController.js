@@ -51,7 +51,8 @@ const authController = {
         if (req.user) {
             return res.status(200).json({ message: 'Login authentication successful.', user: req.user });
         }
-        res.status(401).json({ message: 'Login authentication failed'});
+        // status 200 to surpress browser from automatically logging a response with status 4XX or 5XX as an error
+        res.status(200).json({ message: 'Login authentication failed'});
     }
 }
 
