@@ -40,6 +40,8 @@ function Comments({ post }) {
     }
 
     const handleSubmit = async (e) => {
+        if (newComment === '') return;
+        setNewComment('');
         e.preventDefault();
 
         try {
