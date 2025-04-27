@@ -53,7 +53,7 @@ function HomePage() {
                 <div className={styles.welcomeContainer}>
                     <div className={styles.welcomeMessage}>
                         <div className={styles.messageContainer}>
-                            <h2>Welcome to <span>aspdevs</span></h2>
+                            <h2>Welcome to asp<span>devs</span></h2>
                             <p>Hi there! My name is Dominik Augustyn, and this is my blog: written by an aspiring web developer, for other aspiring developers. Feel free to read all about my insights, experiences, tips and reflections!</p>
                         </div>
                         <div className={styles.action}>
