@@ -12,6 +12,9 @@ const postsController = {
             const posts = await prisma.post.findMany({
                 include: {
                     tags: true
+                },
+                orderBy: {
+                    created_at: 'desc'
                 }
             });
 
