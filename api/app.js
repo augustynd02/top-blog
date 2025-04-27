@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const path = require("node:path");
+const rateLimit = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
 const authenticateToken = require('./middleware/authenticateToken');
 
@@ -18,7 +18,14 @@ cloudinary.config({
 
 const app = express();
 
-// TODO: configure CORS for deployment
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    message: 'Too many requests from this IP, please try again later.',
+    headers: true,
+});
+app.use(limiter);
+
 app.use(cors({
     origin: process.env.FRONTEND_URL,
     credentials: true,
