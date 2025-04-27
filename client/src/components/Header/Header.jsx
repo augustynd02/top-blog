@@ -7,12 +7,25 @@ import { AuthContext } from '../../contexts/AuthContext'
 import { RxHamburgerMenu } from "react-icons/rx";
 
 function Header() {
-    const { user, isLoading } = useContext(AuthContext);
+    const { user, setUser, isLoading } = useContext(AuthContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     }
+
+    const logout = async () => {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/session`, {
+            method: 'DELETE',
+            credentials: 'include',
+        });
+
+        if (response.ok) {
+            setUser(null);
+        } else {
+            console.error('Failed to logout.');
+        }
+    };
 
     return (
         <header>
@@ -29,7 +42,7 @@ function Header() {
                         {user ? (
                             <>
                                 <li className={styles.headerWelcome}>Welcome, {user.username}!</li>
-                                <li><Link href='/logout' isStyled={true}>Logout</Link></li>
+                                <li><button onClick={logout} className={styles.styledLink}>Logout</button></li>
                             </>
                         ) : (
                             <>
@@ -49,7 +62,7 @@ function Header() {
                                 <>
                                     <div className={styles.logoutContainer}>
                                         <span className={styles.headerWelcome}>Welcome, {user.username}!</span>
-                                        <li><Link href='/logout' isStyled={true}>Logout</Link></li>
+                                        <li><button onClick={logout} className={styles.styledLink}>Logout</button></li>
                                     </div>
                                 </>
                             ) : (

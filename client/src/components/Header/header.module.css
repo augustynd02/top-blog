@@ -33,6 +33,7 @@ header {
 
 nav ul {
     display: flex;
+    align-items: center;
     gap: 1rem;
 
     margin: 0;
@@ -79,17 +80,31 @@ nav ul.loaded li:nth-child(4) {
     color: var(--color-font-primary-darker)
 }
 
-.styledLink {
-    background-color: var(--color-primary);
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-}
-
 .styledLink:hover {
     text-decoration: none;
     background-color: var(--color-primary-darker);
 }
 
+.styledLink {
+    padding: 0.75rem 1rem;
+
+    appearance: none;
+    border: none;
+    border-radius: 4px;
+    background: linear-gradient(to bottom, var(--color-primary), var(--color-primary-darker));
+    cursor: pointer;
+    background-size: 1px 100px;
+    transition: 0.2s ease;
+
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-font-primary);
+}
+
+.styledLink:hover {
+    text-decoration: none;
+    background-position: 100px;
+}
 
 .menu {
     display: none;

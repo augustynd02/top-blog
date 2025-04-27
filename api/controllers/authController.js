@@ -38,8 +38,14 @@ const authController = {
         if (!req.cookies.token) {
             throw new CustomError(400, "No active session was found.");
         }
-        res.clearCookie('token');
-        res.status(205).json({ message: 'Logout successful.' })
+        console.log(req.cookies.token);
+        res.clearCookie('token', {
+            httpOnly: true,
+            sameSite: 'None',
+            secure: true,
+            maxAge: 604800000,
+        });
+        res.status(205).send();
     },
     checkLogin: async (req, res) => {
         if (req.user) {
