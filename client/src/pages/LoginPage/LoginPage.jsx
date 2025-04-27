@@ -67,7 +67,7 @@ function LoginPage() {
                             </div>
                             <div className={styles.formField}>
                                 <label htmlFor="password">Password</label>
-                                <input required type="text" name="password" id="password" onChange={handleChange} />
+                                <input required type="password" name="password" id="password" onChange={handleChange} />
                             </div>
                             <button type="submit">Login</button>
                             <p>Don&apos;t have an account yet? <a href="/register">Sign up!</a></p>

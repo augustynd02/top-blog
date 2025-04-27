@@ -57,7 +57,7 @@ function RegisterPage() {
                             </div>
                             <div className={styles.formField}>
                                 <label htmlFor="password">Password</label>
-                                <input required type="text" name="password" id="password" onChange={handleChange} />
+                                <input required type="password" name="password" id="password" onChange={handleChange} />
                             </div>
                             <button type="submit">Register</button>
                             <p>Already have an account? <a href="/login">Sign in!</a></p>
